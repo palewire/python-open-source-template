@@ -1,8 +1,10 @@
-# python-open-source-template
+python-open-source-template
+===========================
 
 A template repository for Python open-source software projects
 
-### Contributing
+Contributing
+------------
 
 Install dependencies for development.::
 
