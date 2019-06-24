@@ -6,14 +6,14 @@ A template repository for Python open-source software projects
 Contributing
 ------------
 
-Install dependencies for development. ::
+Install dependencies for development ::
 
     $ pipenv install --dev
 
-Run tests. ::
+Run tests.= ::
 
     $ make test
 
-Shipping new version to PyPI. ::
+Ship new version to PyPI.= ::
 
     $ make ship
