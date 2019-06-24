@@ -10,10 +10,10 @@ Install dependencies for development ::
 
     $ pipenv install --dev
 
-Run tests.= ::
+Run tests ::
 
     $ make test
 
-Ship new version to PyPI.= ::
+Ship new version to PyPI ::
 
     $ make ship
