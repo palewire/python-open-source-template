@@ -1,7 +1,7 @@
 python-open-source-template
 ===========================
 
-A template repository for Python open-source software projects
+A template for open-source Python software repositories
 
 Contributing
 ------------
