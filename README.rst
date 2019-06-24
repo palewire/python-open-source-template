@@ -6,7 +6,7 @@ A template repository for Python open-source software projects
 Contributing
 ------------
 
-Install dependencies for development.::
+Install dependencies for development. ::
 
     $ pipenv install --dev
 
