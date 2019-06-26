@@ -24,4 +24,9 @@ setup(
         'Programming Language :: Python :: 3.7',
         'License :: OSI Approved :: MIT License',
     ],
+    project_urls={
+        'Maintainer': 'https://github.com/datadesk',
+        'Source': 'https://github.com/datadesk/<your-repo-slug>',
+        'Tracker': 'https://github.com/datadesk/<your-repo-slug>/issues'
+    },
 )
