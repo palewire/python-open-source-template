@@ -38,7 +38,7 @@ jobs:
 
       - id: sync-pipfile
         name: Sync pipfile
-        run: pipenv sync --dev --python  ${{ matrix.python }}
+        run: pipenv install --dev --python  ${{ matrix.python }}
         shell: bash
 
       - id: run
