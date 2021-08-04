@@ -2,8 +2,10 @@ import os
 from setuptools import setup
 
 
-def read(fname):
-    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+def read(file_name):
+    this_dir = os.path.dirname(__file__)
+    file_path = os.path.join(this_dir, file_name)
+    with open(file_path) as f:
         return f.read()
 
 
