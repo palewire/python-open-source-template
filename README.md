@@ -1,5 +1,3 @@
-# python-open-source-template
-
 A template for open-source Python software repositories
 
 ## Contributing
