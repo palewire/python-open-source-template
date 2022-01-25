@@ -1,9 +1,4 @@
-.PHONY: test ship
-
-test:
-	pipenv run flake8 ./
-	pipenv run coverage run test.py
-	pipenv run coverage report -m
+.PHONY: ship
 
 
 ship:
