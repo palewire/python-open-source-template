@@ -8,9 +8,9 @@ twine = "*"
 flake8 = "*"
 coverage = "*"
 pre-commit = "*"
+typing-extensions = "*"
 
 [packages]
-typing-extensions = "*"
 
 [requires]
 python_version = "3.9"
