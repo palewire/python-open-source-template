@@ -36,7 +36,7 @@ jobs:
 
       - id: mypy
         name: Run mypy
-        run: pipenv run mypy ./ --ignore-missing-imports
+        run: pipenv run mypy ./ --ignore-missing-imports --verbose
 
   test-python:
     strategy:
