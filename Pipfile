@@ -11,6 +11,8 @@ pre-commit = "*"
 typing-extensions = "*"
 
 [packages]
+mypy = "*"
+types-requests = "*"
 
 [requires]
 python_version = "3.9"

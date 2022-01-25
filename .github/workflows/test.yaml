@@ -15,11 +15,28 @@ jobs:
         name: Install Python, pipenv and Pipfile packages
         uses: palewire/install-python-pipenv-pipfile@v2
         with:
-          python-version: 3.7
+          python-version: 3.9
 
       - id: lint
         name: Lint Python code
         run: pipenv run flake8 ./ --verbose
+
+  mypy-python:
+    name: Static type check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - id: install
+        name: Install Python, pipenv and Pipfile packages
+        uses: palewire/install-python-pipenv-pipfile@v2
+        with:
+          python-version: 3.9
+
+      - id: mypy
+        name: Run mypy
+        run: pipenv run mypy ./ --ignore-missing-imports
 
   test-python:
     strategy:
@@ -37,6 +54,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - id: run
-        name: Run
+      - id: tests
+        name: Run tests
         run: make test
