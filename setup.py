@@ -4,6 +4,13 @@ from setuptools import setup
 
 
 def read(file_name):
+    """Read in the supplied file name from the root directory.
+
+    Args:
+        file_name (str): the name of the file
+
+    Returns: the content of the file
+    """
     this_dir = os.path.dirname(__file__)
     file_path = os.path.join(this_dir, file_name)
     with open(file_path) as f:
@@ -11,14 +18,14 @@ def read(file_name):
 
 
 setup(
-    name="<your-pypi-package-name>",
+    name="python-open-source-template",
     version="0.0.1",
-    description="<your-repo-description>",
+    description="A template for open-source Python software repositories",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="Ben Welsh",
     author_email="b@palewi.re",
-    url="http://www.github.com/datadesk/<your-repo-slug>",
+    url="http://www.github.com/palewire/<your-repo-slug>",
     license="MIT",
     packages=("<your-python-module-name>",),
     classifiers=[
@@ -30,8 +37,8 @@ setup(
         "License :: OSI Approved :: MIT License",
     ],
     project_urls={
-        "Maintainer": "https://github.com/datadesk",
-        "Source": "https://github.com/datadesk/<your-repo-slug>",
-        "Tracker": "https://github.com/datadesk/<your-repo-slug>/issues",
+        "Maintainer": "https://github.com/palewire",
+        "Source": "https://github.com/palewire/<your-repo-slug>",
+        "Tracker": "https://github.com/palewire/<your-repo-slug>/issues",
     },
 )

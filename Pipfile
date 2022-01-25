@@ -9,6 +9,8 @@ flake8 = "*"
 coverage = "*"
 pre-commit = "*"
 typing-extensions = "*"
+flake8-bugbear = "*"
+flake8-docstrings = "*"
 
 [packages]
 mypy = "*"
