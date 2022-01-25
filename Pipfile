@@ -10,6 +10,7 @@ coverage = "*"
 pre-commit = "*"
 
 [packages]
+typing-extensions = "*"
 
 [requires]
 python_version = "3.9"
