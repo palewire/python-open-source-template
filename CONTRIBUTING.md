@@ -1,19 +1,27 @@
 # Contributing
 
-Install dependencies for development
+Clone the repository. Move into the directory on your terminal.
 
-```zsh
+Install dependencies for development.
+
+```sh
 pipenv install --dev
 ```
 
-Run tests
+Install pre-commit to run a battery of automatic quick fixes against your work.
 
-```zsh
+```sh
+pipenv run pre-commit install
+```
+
+Run tests.
+
+```sh
 make test
 ```
 
-Ship new version to PyPI
+Ship new version to PyPI.
 
-```zsh
+```sh
 make ship
 ```
