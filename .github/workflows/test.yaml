@@ -89,7 +89,7 @@ jobs:
 
       - id: save
         name: Save artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: test-build-${{ github.run_number }}
           path: ./dist
