@@ -59,11 +59,11 @@
         },
         "types-requests": {
             "hashes": [
-                "sha256:2437a5f4d16c0c8bd7539a8126d492b7aeb41e6cda670d76b286c7f83a658d42",
-                "sha256:c8010c18b291a7efb60b1452dbe12530bc25693dd657e70c62803fcdc4bffe9b"
+                "sha256:86cb66d3de2f53eac5c09adc42cf6547eefbd0c7e1210beca1ee751c35d96083",
+                "sha256:feaf581bd580497a47fe845d506fa3b91b484cf706ff27774e87659837de9962"
             ],
             "index": "pypi",
-            "version": "==2.27.16"
+            "version": "==2.28.9"
         },
         "types-urllib3": {
             "hashes": [
