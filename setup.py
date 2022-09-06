@@ -16,6 +16,34 @@ def read(file_name):
     with open(file_path) as f:
         return f.read()
 
+def version_scheme(version):
+    """Version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    import time
+
+    from setuptools_scm.version import guess_next_version
+
+    if version.exact:
+        return version.format_with("{tag}")
+    else:
+        _super_value = version.format_next_version(guess_next_version)
+        now = int(time.time())
+        return _super_value + str(now)
+
+
+def local_version(version):
+    """Local version scheme hack for setuptools_scm.
+
+    Appears to be necessary to due to the bug documented here: https://github.com/pypa/setuptools_scm/issues/342
+
+    If that issue is resolved, this method can be removed.
+    """
+    return ""
+
 
 setup(
     name="python-open-source-template",  # <--- Your module's name goes here
@@ -38,6 +66,8 @@ setup(
         "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: MIT License",
     ],
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     project_urls={
         "Maintainer": "https://github.com/palewire",
         "Source": "https://github.com/palewire/<your-repo-slug>",
