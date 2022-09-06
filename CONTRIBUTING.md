@@ -17,5 +17,5 @@ pipenv run pre-commit install
 Run tests.
 
 ```sh
-make test
+pipenv run coverage run test.py
 ```
