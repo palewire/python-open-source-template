@@ -16,6 +16,7 @@ def read(file_name):
     with open(file_path) as f:
         return f.read()
 
+
 def version_scheme(version):
     """Version scheme hack for setuptools_scm.
 
