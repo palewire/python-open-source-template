@@ -48,13 +48,12 @@ def local_version(version):
 
 setup(
     name="python-open-source-template",  # <--- Your module's name goes here
-    version="0.0.1",
     description="A template for open-source Python software repositories",  # <--- Your module's description goes here
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author="Ben Welsh",
-    author_email="b@palewi.re",
-    url="http://www.github.com/palewire/<your-repo-slug>",
+    author="<your name>",
+    author_email="<your email>",
+    url="http://www.github.com/<your-user-name>/<your-repo-slug>",
     license="MIT",
     packages=("",),  # <--- Your module's directory goes here
     classifiers=[
