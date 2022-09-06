@@ -19,9 +19,3 @@ Run tests.
 ```sh
 make test
 ```
-
-Ship new version to PyPI.
-
-```sh
-make ship
-```
