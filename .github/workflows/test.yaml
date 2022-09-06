@@ -8,18 +8,30 @@ jobs:
     name: Lint Python code
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - id: checkout
+        name: Checkout
         uses: actions/checkout@v3
 
-      - id: install
-        name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v2
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv install --dev --python=`which python` 
 
       - id: lint
         name: Lint Python code
         run: pipenv run flake8 ./ --verbose
+        shell: bash
 
   mypy-python:
     name: Static type check
@@ -28,11 +40,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - id: install
-        name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v2
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv install --dev --python=`which python` 
 
       - id: mypy
         name: Run mypy
@@ -48,11 +70,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - id: install
-        name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v2
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python }}
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv install --dev --python=${{ matrix.python }}
 
       - id: tests
         name: Run tests
@@ -70,11 +102,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - id: install
-        name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v2
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv install --dev --python=`which python` 
 
       - id: build
         name: Build release
