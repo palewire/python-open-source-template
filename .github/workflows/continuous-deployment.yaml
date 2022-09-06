@@ -92,12 +92,7 @@ jobs:
 
       - id: tests
         name: Run tests
-        run: pipenv run coverage run test.py
-        shell: bash
-
-      - id: coverage
-        name: Coverage report
-        run: pipenv run coverage report -m
+        run: pipenv run pytest
         shell: bash
 
   build:

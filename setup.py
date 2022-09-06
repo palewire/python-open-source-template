@@ -69,8 +69,8 @@ setup(
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     project_urls={
-        "Maintainer": "https://github.com/palewire",
-        "Source": "https://github.com/palewire/<your-repo-slug>",
-        "Tracker": "https://github.com/palewire/<your-repo-slug>/issues",
+        "Maintainer": "https://github.com/<your-user-name>",
+        "Source": "https://github.com/<your-user-name>/<your-repo-slug>",
+        "Tracker": "https://github.com/<your-user-name>/<your-repo-slug>/issues",
     },
 )
