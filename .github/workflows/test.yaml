@@ -27,6 +27,7 @@ jobs:
       - id: install-python-dependencies
         name: Install Python dependencies
         run: pipenv install --dev --python=`which python` 
+        shell: bash
 
       - id: lint
         name: Lint Python code
@@ -55,10 +56,12 @@ jobs:
       - id: install-python-dependencies
         name: Install Python dependencies
         run: pipenv install --dev --python=`which python` 
+        shell: bash
 
       - id: mypy
         name: Run mypy
         run: pipenv run mypy ./ --ignore-missing-imports --verbose
+        shell: bash
 
   test-python:
     strategy:
@@ -85,14 +88,17 @@ jobs:
       - id: install-python-dependencies
         name: Install Python dependencies
         run: pipenv install --dev --python=${{ matrix.python }}
+        shell: bash
 
       - id: tests
         name: Run tests
         run: pipenv run coverage run test.py
+        shell: bash
 
       - id: coverage
         name: Coverage report
         run: pipenv run coverage report -m
+        shell: bash
 
   test-build:
     name: Build Python package
@@ -117,17 +123,22 @@ jobs:
       - id: install-python-dependencies
         name: Install Python dependencies
         run: pipenv install --dev --python=`which python` 
+        shell: bash
 
-      - id: build
-        name: Build release
-        run: |
-          pipenv run python setup.py sdist
-          pipenv run python setup.py bdist_wheel
-          ls -l dist
+      - id: build-source
+        name: Build source release
+        run: pipenv run python setup.py sdist
+        shell: bash
+
+      - id: build-binary
+        name: Build binary release
+        run: pipenv run python setup.py bdist_wheel
+        shell: bash
 
       - id: check
         name: Check release
         run: pipenv run twine check dist/*
+        shell: bash
 
       - id: save
         name: Save artifact
