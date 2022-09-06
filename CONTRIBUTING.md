@@ -77,7 +77,7 @@ Click the "Auto-generate release notes" button in the upper right corner of the 
 
 That should fill in the box below. What appears will depend on how many pull requests you've merged since the last release.
 
-![Auto-generate release notes results](https://raw.githubusercontent.com/palewire/python-open-source-template/main/github/images/releasing-changelog-entered.png)
+![Auto-generate release notes results](https://raw.githubusercontent.com/palewire/python-open-source-template/main/.github/images/releasing-changelog-entered.png)
 
 ## 6. Publish the release
 
