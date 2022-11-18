@@ -13,6 +13,7 @@ flake8-bugbear = "*"
 flake8-docstrings = "*"
 setuptools-scm = "*"
 pytest = "*"
+pytest-env = "*"
 twine = "*"
 
 [packages]
