@@ -15,6 +15,7 @@ setuptools-scm = "*"
 pytest = "*"
 pytest-env = "*"
 twine = "*"
+pytest-cov = "*"
 
 [packages]
 

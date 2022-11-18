@@ -92,7 +92,7 @@ jobs:
 
       - id: tests
         name: Run tests
-        run: pipenv run pytest
+        run: pipenv run pytest --cov -sv
         shell: bash
 
   build:
