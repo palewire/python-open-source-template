@@ -1,6 +1,8 @@
 import os
+import time
 
 from setuptools import setup
+from setuptools_scm.version import guess_next_version
 
 
 def read(file_name):
@@ -24,10 +26,6 @@ def version_scheme(version):
 
     If that issue is resolved, this method can be removed.
     """
-    import time
-
-    from setuptools_scm.version import guess_next_version
-
     if version.exact:
         return version.format_with("{tag}")
     else:
@@ -47,15 +45,22 @@ def local_version(version):
 
 
 setup(
-    name="python-open-source-template",  # <--- Your module's name goes here
-    description="A template for open-source Python software repositories",  # <--- Your module's description goes here
+    name="<your-package-name>",  # <--- Your module's name goes here
+    description="<your-package-description>",  # <--- Your module's description goes here
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="<your name>",
     author_email="<your email>",
     url="http://www.github.com/<your-user-name>/<your-repo-slug>",
-    license="MIT",
+    project_urls={
+        "Maintainer": "https://github.com/<your-user-name>",
+        "Source": "https://github.com/<your-user-name>/<your-repo-slug>",
+        "Tracker": "https://github.com/<your-user-name>/<your-repo-slug>/issues",
+    },
     packages=("",),  # <--- Your module's directory goes here
+    setup_requires=["setuptools_scm"],
+    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
+    license="MIT",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",
@@ -66,11 +71,4 @@ setup(
         "Programming Language :: Python :: 3.10",
         "License :: OSI Approved :: MIT License",
     ],
-    setup_requires=["setuptools_scm"],
-    use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
-    project_urls={
-        "Maintainer": "https://github.com/<your-user-name>",
-        "Source": "https://github.com/<your-user-name>/<your-repo-slug>",
-        "Tracker": "https://github.com/<your-user-name>/<your-repo-slug>/issues",
-    },
 )
