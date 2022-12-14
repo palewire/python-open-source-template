@@ -149,13 +149,6 @@ jobs:
     needs: [build]
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     steps:
-      - id: setup-python
-        name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          cache: 'pipenv'
-
       - id: fetch
         name: Fetch artifact
         uses: actions/download-artifact@v3
