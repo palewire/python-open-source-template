@@ -45,17 +45,17 @@ def local_version(version):
 
 
 setup(
-    name="<your-package-name>",  # <--- Your module's name goes here
-    description="<your-package-description>",  # <--- Your module's description goes here
+    name="your-package-name",  # <--- Your module's name goes here
+    description="your-package-description",  # <--- Your module's description goes here
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    author="<your name>",
-    author_email="<your email>",
-    url="http://www.github.com/<your-user-name>/<your-repo-slug>",
+    author="your name",
+    author_email="your@email.com",
+    url="http://www.github.com/your-user-name/your-repo-slug",
     project_urls={
-        "Maintainer": "https://github.com/<your-user-name>",
-        "Source": "https://github.com/<your-user-name>/<your-repo-slug>",
-        "Tracker": "https://github.com/<your-user-name>/<your-repo-slug>/issues",
+        "Maintainer": "https://github.com/your-user-name",
+        "Source": "https://github.com/your-user-name/your-repo-slug",
+        "Tracker": "https://github.com/your-user-name/your-repo-slug/issues",
     },
     packages=("",),  # <--- Your module's directory goes here
     setup_requires=["setuptools_scm"],
