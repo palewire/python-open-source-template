@@ -5,7 +5,7 @@ Clone the repository. Move into the directory on your terminal.
 Install dependencies for development.
 
 ```sh
-pipenv install --dev
+pipenv sync --dev
 ```
 
 Install pre-commit to run a battery of automatic quick fixes against your work.
