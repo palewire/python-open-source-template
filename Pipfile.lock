@@ -19,11 +19,11 @@
     "develop": {
         "attrs": {
             "hashes": [
-                "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6",
-                "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"
+                "sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836",
+                "sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99"
             ],
-            "markers": "python_version >= '3.5'",
-            "version": "==22.1.0"
+            "markers": "python_version >= '3.6'",
+            "version": "==22.2.0"
         },
         "bleach": {
             "hashes": [
@@ -564,7 +564,7 @@
                 "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983",
                 "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4'",
+            "markers": "python_version >= '3.7' and python_full_version < '4.0.0'",
             "version": "==2.28.1"
         },
         "requests-toolbelt": {
@@ -588,7 +588,7 @@
                 "sha256:a4eb26484f2c82589bd9a17c73d32a010b1e29d89f1604cd9bf3a2097b81bb5e",
                 "sha256:ba3a3775974105c221d31141f2c116f4fd65c5ceb0698657a11e9f295ec93fd0"
             ],
-            "markers": "python_version < '4' and python_full_version >= '3.6.3'",
+            "markers": "python_full_version >= '3.6.3' and python_full_version < '4.0.0'",
             "version": "==12.6.0"
         },
         "secretstorage": {
@@ -656,11 +656,11 @@
         },
         "types-requests": {
             "hashes": [
-                "sha256:091d4a5a33c1b4f20d8b1b952aa8fa27a6e767c44c3cf65e56580df0b05fd8a9",
-                "sha256:a7df37cc6fb6187a84097da951f8e21d335448aa2501a6b0a39cbd1d7ca9ee2a"
+                "sha256:48b7c06e3dffc1b6359e1888084a2b97f41b6b63f208c571ddb02ddbc6a892e4",
+                "sha256:8c1b1e6a0b19522b4738063e772dcee82cee1c3646536ccc4eb96f655af2b6c6"
             ],
             "index": "pypi",
-            "version": "==2.28.11.5"
+            "version": "==2.28.11.6"
         },
         "types-urllib3": {
             "hashes": [
