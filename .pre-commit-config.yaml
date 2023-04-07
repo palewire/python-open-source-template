@@ -16,7 +16,7 @@ repos:
     -   id: check-merge-conflict
 
 -   repo: https://github.com/psf/black
-    rev: 22.10.0
+    rev: 23.3.0
     hooks:
     -   id: black
 
@@ -29,7 +29,8 @@ repos:
 -   repo: https://github.com/timothycrosley/isort
     rev: 5.10.1
     hooks:
-    -   id: isort
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
 
 -   repo: https://github.com/pycqa/flake8
     rev: 6.0.0
