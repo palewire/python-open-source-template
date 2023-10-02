@@ -16,12 +16,12 @@ repos:
     -   id: check-merge-conflict
 
 -   repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.9.1
     hooks:
     -   id: black
 
 -   repo: https://github.com/asottile/blacken-docs
-    rev: 1.13.0
+    rev: 1.16.0
     hooks:
     -   id: blacken-docs
         additional_dependencies: [black]
@@ -33,7 +33,7 @@ repos:
         args: ["--profile", "black", "--filter-files"]
 
 -   repo: https://github.com/pycqa/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
     - id: flake8
       additional_dependencies:
@@ -43,13 +43,13 @@ repos:
         - pep8-naming
 
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.4.0
+    rev: v3.13.0
     hooks:
     -   id: pyupgrade
         args: [--py37-plus]
 
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
+    rev: v1.5.1
     hooks:
     -   id: mypy
         additional_dependencies:
