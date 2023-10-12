@@ -20,6 +20,26 @@ Run tests.
 pipenv run pytest
 ```
 
+## Documentation
+
+The repository includes a ready-to-serve documentation site managed by Python's [Sphinx](https://www.sphinx-doc.org/en/master/) framework.
+
+The configuration is stored in the `docs` directory. The default settings in `docs/conf.py` include several common Sphinx extensions. The documentation is written in [Markdown](https://en.wikipedia.org/wiki/Markdown) files stored within the directory. If you plan to publish documentation, you should started by editing `docs/index.md` and go from there. You can learn more about the options to available in the [MyST](https://myst-parser.readthedocs.io/en/latest/intro.html) guide to writing Markdown in Sphinx.
+
+To build the documentation as a bundle of HTML files, run the following command:
+
+```zsh
+cd docs && pipenv run make html``
+```
+
+You can launch a preview site with the following command:
+
+```zsh
+cd docs && pipenv run make livehtml
+```
+
+The documentation site is build by default in a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket.
+
 ## Releasing
 
 # Releasing
