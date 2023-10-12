@@ -18,6 +18,13 @@ pep8-naming = "*"
 pytest = "*"
 pytest-env = "*"
 pytest-cov = "*"
+sphinx = "*"
+sphinx-autobuild = "*"
+sphinx-click = "*"
+sphinx-rtd-theme = "*"
+sphinxcontrib-napoleon = "*"
+sphinxcontrib-mermaid = "*"
+myst-parser = "*"
 
 [packages]
 exceptiongroup = "*"

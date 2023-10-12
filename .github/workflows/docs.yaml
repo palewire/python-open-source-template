@@ -1,0 +1,78 @@
+name: Documentation
+
+on:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v4
+
+      - id: setup-python
+        name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pipenv'
+
+      - id: install-pipenv
+        name: Install pipenv
+        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        shell: bash
+
+      - id: install-python-dependencies
+        name: Install Python dependencies
+        run: pipenv sync --dev
+        shell: bash
+
+      - id: build-sphinx-documentation
+        name: Build Sphinx documentation
+        run: pipenv run make html
+        shell: bash
+        working-directory: docs
+
+      - id: upload-release-candidate
+        name: Upload release candidate
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-candidate
+          path: ./docs/_build/html/
+
+  # deploy:
+  #   name: Deploy
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   if: github.event_name == 'push' && github.branch == 'main'
+  #   steps:
+  #     - name: Download release candidate
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: release-candidate
+  #         path: ./docs/
+
+  #     - id: configure-aws
+  #       name: Configure AWS Credentials
+  #       uses: aws-actions/configure-aws-credentials@v1
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
+
+  #     - id: upload-to-s3
+  #       name: Upload documentation to Amazon S3
+  #       uses: datadesk/delivery-deploy-action@v1
+  #       with:
+  #         bucket: ${{ secrets.AWS_BUCKET }}
+  #         base-path: ${{ secrets.AWS_BASE_PATH }}
+  #         dir: ./docs/
+  #         should-cache: false
+  #         use-accelerate-endpoint: false
+  #         public: true
