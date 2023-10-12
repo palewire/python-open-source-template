@@ -29,7 +29,7 @@ The configuration is stored in the `docs` directory. The default settings in `do
 To build the documentation as a bundle of HTML files, run the following command:
 
 ```zsh
-cd docs && pipenv run make html``
+cd docs && pipenv run make html
 ```
 
 You can launch a preview site with the following command:
