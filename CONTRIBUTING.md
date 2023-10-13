@@ -38,7 +38,7 @@ You can launch a preview site with the following command:
 cd docs && pipenv run make livehtml
 ```
 
-The documentation site is build by default in a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket.
+The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket after a push to the main branch.
 
 ## Releasing
 
