@@ -2,7 +2,7 @@
 import os
 import time
 
-from setuptools import setup
+from setuptools import find_packages, setup
 from setuptools_scm.version import guess_next_version
 
 
@@ -58,7 +58,7 @@ setup(
         "Source": "https://github.com/your-user-name/your-repo-slug",
         "Tracker": "https://github.com/your-user-name/your-repo-slug/issues",
     },
-    packages=("",),  # <--- Your module's directory goes here
+    packages=find_packages(),  # <--- Your module's directory goes here
     setup_requires=["setuptools_scm"],
     use_scm_version={"version_scheme": version_scheme, "local_scheme": local_version},
     license="MIT",
