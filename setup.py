@@ -70,5 +70,6 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "License :: OSI Approved :: MIT License",
+        "Typing :: Typed",
     ],
 )
