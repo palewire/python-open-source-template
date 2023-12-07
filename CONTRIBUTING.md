@@ -20,6 +20,8 @@ Run tests.
 pipenv run pytest
 ```
 
+Before you release your package, be sure to customize the `setup.py` file to fit your project.
+
 ## Documentation
 
 The repository includes a ready-to-serve documentation site managed by Python's [Sphinx](https://www.sphinx-doc.org/en/master/) framework.
