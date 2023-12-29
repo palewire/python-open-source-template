@@ -2,7 +2,7 @@
 	"name": "Python 3",
 	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/pipenv:1": {}
+		"ghcr.io/devcontainers-contrib/features/pipenv:2": {}
 	},
 	"postCreateCommand": "pipenv sync --dev"
 }
