@@ -65,7 +65,7 @@ jobs:
 
       - id: mypy
         name: Run mypy
-        run: pipenv run mypy ./ --ignore-missing-imports --verbose
+        run: pipenv run mypy ./ --ignore-missing-imports
         shell: bash
 
   test-python:
