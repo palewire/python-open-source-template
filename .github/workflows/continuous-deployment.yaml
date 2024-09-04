@@ -17,14 +17,14 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
 
-      - id: ruff
+      - id: check-ruff
         name: Check with Ruff
         uses: chartboost/ruff-action@v1
         with:
           args: 'check --exit-zero --verbose'
 
-      - id: ruff
-        name: Lint with Ruff
+      - id: format-ruff
+        name: Format with Ruff
         uses: chartboost/ruff-action@v1
         with:
           args: 'format --check --verbose'
