@@ -24,7 +24,7 @@ jobs:
           args: 'format --check'
 
   mypy-python:
-    name: Static-types check
+    name: Check Python static types
     runs-on: ubuntu-latest
     steps:
       - id: checkout
