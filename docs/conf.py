@@ -5,7 +5,7 @@ import sys
 from datetime import datetime
 
 # Insert the parent directory into the path
-sys.path.insert(0, os.path.abspath("../your_source_code"))
+# sys.path.insert(0, os.path.abspath("../your_source_code"))
 
 project = "your-package-name"
 year = datetime.now().year
@@ -15,7 +15,7 @@ author = "your-name"
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-html_theme = "sphinx_rtd_theme"
+# html_theme = "palewire"
 html_baseurl = "/docs/"
 pygments_style = "sphinx"
 

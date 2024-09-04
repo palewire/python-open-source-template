@@ -23,7 +23,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv venv && uv pip install sphinx sphinx-click sphinx-rtd-theme sphinxcontrib-mermaid myst-parser
+        run: uv venv && uv pip install sphinx sphinx-click sphinxcontrib-mermaid myst-parser
         working-directory: ./docs
 
       - id: build-sphinx-documentation
