@@ -94,34 +94,25 @@ jobs:
 
       - id: setup-python
         name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pipenv'
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+        uses: hynek/setup-cached-uv@v2
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: pipenv install --dev --deploy
-        shell: bash
+        run: uv venv && uv pip install twine wheel setuptools-scm
 
       - id: build-source
         name: Build source release
-        run: pipenv run python setup.py sdist
+        run: uv run python setup.py sdist
         shell: bash
 
       - id: build-binary
         name: Build binary release
-        run: pipenv run python setup.py bdist_wheel
+        run: uv run python setup.py bdist_wheel
         shell: bash
 
       - id: check
         name: Check release
-        run: pipenv run twine check dist/*
+        run: uv run twine check dist/*
         shell: bash
 
       - id: save
