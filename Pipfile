@@ -7,14 +7,6 @@ verify_ssl = true
 twine = "*"
 setuptools-scm = "*"
 pre-commit = "*"
-mypy = "*"
-types-requests = "*"
-typing-extensions = "*"
-flake8 = "*"
-flake8-bugbear = "*"
-flake8-docstrings = "*"
-flake8-simplify = "*"
-pep8-naming = "*"
 pytest = "*"
 pytest-env = "*"
 pytest-cov = "*"
@@ -24,10 +16,8 @@ sphinx-click = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
-tomli = "*"
 
 [packages]
-exceptiongroup = "*"
 
 [requires]
 python_version = "3.11"
