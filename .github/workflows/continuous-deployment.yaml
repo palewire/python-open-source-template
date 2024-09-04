@@ -64,6 +64,7 @@ jobs:
         name: Install pipenv
         run: |
           python -m ensurepip --upgrade
+          python -m pip install --upgrade setuptools
           curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
         shell: bash
 
