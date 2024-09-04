@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # ruff
-.ruff-cache/
+.ruff_cache/
