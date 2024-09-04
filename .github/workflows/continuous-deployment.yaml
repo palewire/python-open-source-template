@@ -41,7 +41,7 @@ jobs:
 
       - id: mypy
         name: Run mypy
-        run: pipenv run mypy ./ --ignore-missing-imports
+        run: uv run mypy ./ --ignore-missing-imports
 
   test-python:
     name: Test Python code
