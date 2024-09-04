@@ -1,4 +1,5 @@
 """Configuration file for the package."""
+
 import os
 import time
 
