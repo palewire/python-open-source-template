@@ -62,7 +62,9 @@ jobs:
 
       - id: install-pipenv
         name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        run: |
+          python -m ensurepip --upgrade
+          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
         shell: bash
 
       - id: install-python-dependencies
