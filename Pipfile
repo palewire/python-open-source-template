@@ -18,6 +18,7 @@ sphinxcontrib-mermaid = "*"
 myst-parser = "*"
 typing_extensions = "*"
 exceptiongroup = "*"
+tomli = "*"
 
 [packages]
 
