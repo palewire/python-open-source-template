@@ -16,9 +16,10 @@ sphinx-click = "*"
 sphinx-rtd-theme = "*"
 sphinxcontrib-mermaid = "*"
 myst-parser = "*"
+typing_extensions = "*"
+exceptiongroup = "*"
 
 [packages]
-exceptiongroup = "*"
 
 [requires]
 python_version = "3.11"
