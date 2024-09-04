@@ -19,26 +19,16 @@ jobs:
 
       - id: setup-python
         name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pipenv'
-
-      - id: install-pipenv
-        name: Install pipenv
-        run: curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
-        shell: bash
+        uses: hynek/setup-cached-uv@v2
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: pipenv sync --dev
-        shell: bash
+        run: uv venv && uv pip install sphinx sphinx-click sphinx-rtd-theme sphinxcontrib-mermaid myst-parser
 
       - id: build-sphinx-documentation
         name: Build Sphinx documentation
-        run: pipenv run make html
+        run: uv run make html
         shell: bash
-        working-directory: docs
 
       - id: upload-release-candidate
         name: Upload release candidate
