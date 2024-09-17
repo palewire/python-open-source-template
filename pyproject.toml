@@ -31,7 +31,7 @@ Maintainer = "https://github.com/palewire/"
 Source = "https://github.com/palewire/your-respository/"
 Issues = "https://github.com/palewire/your-respository/issues/"
 
-[tool.setuptools]
-packages = ["your_package_module"]
+# [tool.setuptools]
+# packages = ["your_package_module"]
 
 [tool.setuptools_scm]
