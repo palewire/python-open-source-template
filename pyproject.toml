@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools >= 61.0", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "your-package-name"
+dynamic = ["version"]
+authors = [
+  { name="Ben Welsh", email="b@palewi.re" },
+]
+description = "Your package description"
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    'exceptiongroup; python_version<"3.11"',
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+]
+
+[project.urls]
+Documentation = "https://palewi.re/docs/your-respository/"
+Maintainer = "https://github.com/palewire/"
+Source = "https://github.com/palewire/your-respository/"
+Issues = "https://github.com/palewire/your-respository/issues/"
+
+[tool.setuptools]
+packages = ["your_package_module"]
+
+[tool.setuptools_scm]

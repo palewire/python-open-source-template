@@ -98,16 +98,11 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv venv && uv pip install twine wheel setuptools-scm
+        run: uv venv && uv pip install twine
 
-      - id: build-source
-        name: Build source release
-        run: uv run python setup.py sdist
-        shell: bash
-
-      - id: build-binary
-        name: Build binary release
-        run: uv run python setup.py bdist_wheel
+      - id: build
+        name: Build releases
+        run: uv build --sdist --wheel
         shell: bash
 
       - id: check
