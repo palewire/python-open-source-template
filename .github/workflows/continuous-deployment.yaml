@@ -43,6 +43,7 @@ jobs:
         with:
           version: "latest"
           enable-cache: true
+          cache-dependency-glob: '**/pyproject.toml'
 
       - id: install-python
         name: Install Python
@@ -105,6 +106,7 @@ jobs:
         with:
           version: "latest"
           enable-cache: true
+          cache-dependency-glob: '**/pyproject.toml'
 
       - id: install-python
         name: Install Python
