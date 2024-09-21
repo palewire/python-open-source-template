@@ -37,9 +37,16 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
 
-      - id: setup-python
-        name: Setup Python
-        uses: hynek/setup-cached-uv@v2
+      - id: install-uv
+        name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - id: install-python
+        name: Install Python
+        run: uv python install 3.12
 
       - id: install-python-dependencies
         name: Install Python dependencies
@@ -92,9 +99,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - id: setup-python
-        name: Setup Python
-        uses: hynek/setup-cached-uv@v2
+      - id: install-uv
+        name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - id: install-python
+        name: Install Python
+        run: uv python install 3.12
 
       - id: install-python-dependencies
         name: Install Python dependencies
