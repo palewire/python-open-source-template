@@ -81,7 +81,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv run && uv pip install . ".[test]"
+        run: uv venv && uv pip install . ".[test]"
         shell: bash
 
       - id: tests
