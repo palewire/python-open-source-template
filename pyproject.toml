@@ -45,6 +45,10 @@ mypy = [
     "mypy",
 ]
 
+build = [
+  "twine",
+]
+
 [project.urls]
 Documentation = "https://palewi.re/docs/your-respository/"
 Maintainer = "https://github.com/palewire/"
