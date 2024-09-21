@@ -5,16 +5,16 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "your-package-name"
 dynamic = ["version"]
+requires-python = ">=3.9"
+dependencies = [
+    'exceptiongroup; python_version<"3.11"',
+]
 authors = [
   { name="Ben Welsh", email="b@palewi.re" },
 ]
 description = "Your package description"
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.9"
-dependencies = [
-    'exceptiongroup; python_version<"3.11"',
-]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python",
@@ -33,18 +33,15 @@ test = [
     "pytest-vcr",
     "pytest-xdist",
 ]
-
 docs = [
     "sphinx",
     "sphinx-autobuild",
     "sphinxcontrib-mermaid",
     "myst-parser",
 ]
-
 mypy = [
     "mypy",
 ]
-
 build = [
   "twine",
 ]
