@@ -25,6 +25,26 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest-runner",
+    "pytest-cov",
+    "pytest-env",
+    "pytest-vcr",
+    "pytest-xdist",
+]
+
+docs = [
+    "sphinx",
+    "sphinx-autobuild",
+    "sphinxcontrib-mermaid",
+    "myst-parser",
+]
+
+mypy = [
+    "mypy",
+]
+
 [project.urls]
 Documentation = "https://palewi.re/docs/your-respository/"
 Maintainer = "https://github.com/palewire/"

@@ -67,29 +67,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - id: setup-python
-        name: Setup Python
-        uses: actions/setup-python@v5
+      - id: install-uv
+        name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v3
         with:
-          python-version: '${{ matrix.python }}'
-          cache: 'pipenv'
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: '**/pyproject.toml'
 
-      - id: install-pipenv
-        name: Install pipenv
-        run: |
-          python -m ensurepip --upgrade
-          python -m pip install --upgrade setuptools
-          pip install pipenv
-        shell: bash
+      - id: install-python
+        name: Install Python
+        run: uv python install ${{ matrix.python }}
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: pipenv install --dev --python=${{ matrix.python }}
+        run: uv run && uv pip install . ".[test]"
         shell: bash
 
       - id: tests
         name: Run tests
-        run: pipenv run pytest --cov -sv
+        run: uv run pytest --cov -sv
         shell: bash
 
   build:
