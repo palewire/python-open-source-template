@@ -30,7 +30,6 @@ autodoc_default_options = {
 
 extensions = [
     "myst_parser",
-    "sphinx_click",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinxcontrib.mermaid",
