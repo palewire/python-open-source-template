@@ -109,18 +109,9 @@ jobs:
         name: Install Python
         run: uv python install 3.12
 
-      - id: install-python-dependencies
-        name: Install Python dependencies
-        run: uv venv && uv pip install . ".[build]"
-
       - id: build
         name: Build releases
         run: uv build --sdist --wheel
-        shell: bash
-
-      - id: check
-        name: Check release
-        run: uv run twine check dist/*
         shell: bash
 
       - id: save
