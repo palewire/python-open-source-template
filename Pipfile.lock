@@ -399,11 +399,11 @@
         },
         "mdit-py-plugins": {
             "hashes": [
-                "sha256:1020dfe4e6bfc2c79fb49ae4e3f5b297f5ccd20f010187acc52af2921e27dc6a",
-                "sha256:834b8ac23d1cd60cec703646ffd22ae97b7955a6d596eb1d304be1e251ae499c"
+                "sha256:0c673c3f889399a33b95e88d2f0d111b4447bdfea7f237dab2d488f459835636",
+                "sha256:5f2cd1fdb606ddf152d37ec30e46101a60512bc0e5fa1a7002c36647b09e26b5"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==0.4.1"
+            "version": "==0.4.2"
         },
         "mdurl": {
             "hashes": [
@@ -415,12 +415,12 @@
         },
         "myst-parser": {
             "hashes": [
-                "sha256:851c9dfb44e36e56d15d05e72f02b80da21a9e0d07cba96baf5e2d476bb91531",
-                "sha256:b9317997552424448c6096c2558872fdb6f81d3ecb3a40ce84a7518798f3f28d"
+                "sha256:5cfea715e4f3574138aecbf7d54132296bfd72bb614d31168f48c477a830a7c4",
+                "sha256:9134e88959ec3b5780aedf8a99680ea242869d012e8821db3126d427edc9c95d"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==4.0.0"
+            "version": "==4.0.1"
         },
         "nodeenv": {
             "hashes": [
