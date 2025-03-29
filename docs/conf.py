@@ -34,7 +34,7 @@ extensions = [
     "sphinxcontrib.mermaid",
 ]
 
-# palewire-sphinx-theme settings
+# sphinx-palewire-theme settings
 # html_theme = "palewire"
 # html_sidebars: dict[Any, Any] = {
 #     "**": [
