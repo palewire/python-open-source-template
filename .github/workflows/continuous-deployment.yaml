@@ -19,13 +19,13 @@ jobs:
 
       - id: check-ruff
         name: Check with Ruff
-        uses: chartboost/ruff-action@v1
+        uses: astral-sh/ruff-action@v3
         with:
           args: 'check --exit-zero --verbose'
 
       - id: format-ruff
         name: Format with Ruff
-        uses: chartboost/ruff-action@v1
+        uses: astral-sh/ruff-action@v3
         with:
           args: 'format --check --verbose'
 
