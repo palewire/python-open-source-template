@@ -28,7 +28,6 @@ classifiers = [
 [project.optional-dependencies]
 dev = [
     "pre-commit",
-    "ipython",
     "setuptools-scm",
 ]
 test = [
@@ -47,6 +46,16 @@ docs = [
 ]
 mypy = [
     "mypy",
+]
+notebooks = [
+    "jupyterlab",
+    "ipywidgets",
+    "rich",
+    "pandas",
+    "pyarrow",
+    "xlrd",
+    "openpyxl",
+    "altair",
 ]
 
 [project.urls]

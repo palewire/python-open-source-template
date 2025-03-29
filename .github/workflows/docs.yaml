@@ -27,7 +27,7 @@ jobs:
 
       - id: install-python
         name: Install Python
-        run: uv python install 3.12
+        run: uv python install 3.13
 
       - id: install-python-dependencies
         name: Install Python dependencies

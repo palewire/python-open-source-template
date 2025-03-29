@@ -30,7 +30,7 @@ jobs:
           args: 'format --check --verbose'
 
   mypy-python:
-    name: Check Python static types
+    name: Check Python static typing
     runs-on: ubuntu-latest
     steps:
       - id: checkout
@@ -47,7 +47,7 @@ jobs:
 
       - id: install-python
         name: Install Python
-        run: uv python install 3.12
+        run: uv python install 3.13
 
       - id: install-python-dependencies
         name: Install Python dependencies
@@ -81,7 +81,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv sync --extra test
+        run: uv sync --extra test --python ${{ matrix.python }}
         shell: bash
 
       - id: tests
@@ -107,7 +107,7 @@ jobs:
 
       - id: install-python
         name: Install Python
-        run: uv python install 3.12
+        run: uv python install 3.13
 
       - id: build
         name: Build releases
