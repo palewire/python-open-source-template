@@ -51,7 +51,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv venv && uv pip install . ".[mypy]"
+        run: uv sync --extra mypy
 
       - id: mypy
         name: Run mypy
@@ -81,7 +81,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv venv && uv pip install . ".[test]"
+        run: uv sync --extra test
         shell: bash
 
       - id: tests

@@ -5,19 +5,19 @@ Clone the repository. Move into the directory on your terminal.
 Install dependencies for development.
 
 ```sh
-pipenv sync --dev
+uv sync --all-extras
 ```
 
 Install pre-commit to run a battery of automatic quick fixes against your work.
 
 ```sh
-pipenv run pre-commit install
+uv run pre-commit install
 ```
 
 Run tests.
 
 ```sh
-pipenv run pytest
+uv run pytest
 ```
 
 Before you release your package, be sure to customize the `setup.py` file to fit your project.
@@ -31,13 +31,13 @@ The configuration is stored in the `docs` directory. The default settings in `do
 To build the documentation as a bundle of HTML files, run the following command:
 
 ```zsh
-cd docs && pipenv run make html
+cd docs && uv run make html
 ```
 
 You can launch a preview site with the following command:
 
 ```zsh
-cd docs && pipenv run make livehtml
+cd docs && uv run make livehtml
 ```
 
 The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket after a push to the main branch.
