@@ -1,15 +1,114 @@
 {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    
     "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "python.terminal.activateEnvironment": true,
+    
+    "python.analysis.extraPaths": ["${workspaceFolder}"],
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    
+    "python.testing.pytestArgs": ["tests"],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit",
+          "source.fixAll.ruff": "explicit"
+        }
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml",
+        "editor.formatOnSave": true
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     "jupyter.interactiveWindow.cellMarker.codeRegex": "^(#\\s*%%|#\\s*\\<codecell\\>|#\\s*In\\[\\d*\\]:|#\\s*In\\[ \\]:|#\\s*cell)",
     "jupyter.interactiveWindow.cellMarker.default": "# %%",
-    "python.analysis.extraPaths": [
-        "${workspaceFolder}"
+
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    
+    "files.associations": {
+        "*.yaml": "yaml",
+        "*.yml": "yaml",
+        "*.md": "markdown"
+    },
+    
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true,
+        "**/*.egg-info": true,
+        "**/.coverage": true
+    },
+    
+    "search.exclude": {
+        "**/output": true,
+        "**/node_modules": true,
+        "**/.venv": true,
+        "**/uv.lock": true,
+        "**/package-lock.json": true,
+        "**/site/dist": true
+    },
+    
+    "files.watcherExclude": {
+        "**/htmlcov": true,
+        "**/docs/_build": true
+    },
+
+    "cSpell.dictionaryDefinitions": [
+        {
+          "name": "project-terms",
+          "path": "../.codespell-ignore-words.txt",
+          "addWords": true
+        }
     ],
-    "python.testing.pytestArgs": [
-        "tests"
+    "cSpell.dictionaries": ["project-terms"],
+    "cSpell.ignorePaths": [
+        "uv.lock",
+        "package-lock.json",
+        "node_modules",
+        "*.csv",
+        ".venv",
+        "output"
     ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".*",
+                "cmd": "SKIP=pyright,prettier uv run pre-commit run --files \"${file}\""
+            }
+        ]
+    }
 }
