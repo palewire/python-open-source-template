@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "your-package-name"
 dynamic = ["version"]
-requires-python = ">=3.11"
+requires-python = "==3.13.*"
 dependencies = []
 authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
 description = "Your package description"
@@ -142,7 +142,7 @@ relative_files = true
 omit = ["*/__pycache__/*"]
 
 [tool.pyright]
-# pythonVersion = "3.12"
+pythonVersion = "3.13"
 venvPath = "."
 venv = ".venv"
 # include = ["your_package_name"]
