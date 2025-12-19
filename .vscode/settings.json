@@ -89,7 +89,7 @@
     "cSpell.dictionaryDefinitions": [
         {
           "name": "project-terms",
-          "path": "../.codespell-ignore-words.txt",
+          "path": "${workspaceFolder}/.codespell-ignore-words.txt",
           "addWords": true
         }
     ],
