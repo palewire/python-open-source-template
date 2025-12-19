@@ -1,0 +1,3 @@
+# Python terms
+pytest
+codespell
