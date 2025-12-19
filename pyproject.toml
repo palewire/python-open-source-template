@@ -30,6 +30,7 @@ dev = [
     "pre-commit",
     "setuptools-scm",
     "pyright",
+    "vulture",
 ]
 test = [
     "pytest-runner",
