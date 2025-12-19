@@ -45,9 +45,6 @@ docs = [
     "myst-parser",
     "sphinx-palewire-theme",
 ]
-mypy = [
-    "mypy",
-]
 notebooks = [
     "jupyterlab",
     "ipywidgets",
