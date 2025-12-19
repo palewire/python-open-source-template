@@ -109,7 +109,7 @@ jobs:
 
       - id: tests
         name: Run tests
-        run: uv run pytest --cov -sv
+        run: uv run --python ${{ matrix.python }} pytest --cov -sv
 
   build:
     name: Build release candidate
