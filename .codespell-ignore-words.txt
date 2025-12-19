@@ -2,3 +2,5 @@
 pytest
 codespell
 sphinxcontrib
+venv
+uv
