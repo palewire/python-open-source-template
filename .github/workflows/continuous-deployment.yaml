@@ -127,10 +127,6 @@ jobs:
           enable-cache: true
           cache-dependency-glob: '**/pyproject.toml'
 
-      - id: install-python
-        name: Install Python
-        run: uv python install 3.13
-
       - id: build
         name: Build releases
         run: uv build --sdist --wheel
