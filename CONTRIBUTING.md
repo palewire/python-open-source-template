@@ -31,13 +31,13 @@ The configuration is stored in the `docs` directory. The default settings in `do
 To build the documentation as a bundle of HTML files, run the following command:
 
 ```zsh
-cd docs && uv run make html
+make build-docs
 ```
 
 You can launch a preview site with the following command:
 
 ```zsh
-cd docs && uv run make livehtml
+make serve-docs
 ```
 
 The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket after a push to the main branch.

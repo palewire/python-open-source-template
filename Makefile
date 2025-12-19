@@ -66,6 +66,12 @@ PYTHON := python -W ignore -m
 # Commands
 #
 
+build-docs: ## Build the docs
+	$(call banner,  📚 Building docs 📚)
+	@rm -rf _build/
+	@rm -rf docs/_build
+	@cd docs && $(UV) make html
+
 serve-docs: ## Test the site
 	$(call banner,  🧪 Serving test site 🧪)
 	@rm -rf _build/
