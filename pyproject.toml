@@ -7,11 +7,9 @@ name = "your-package-name"
 dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = []
-authors = [
-  { name="Ben Welsh", email="b@palewi.re" },
-]
+authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
 description = "Your package description"
-license = {text = "MIT"}
+license = { text = "MIT" }
 readme = "README.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -26,18 +24,21 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pre-commit",
-    "setuptools-scm",
-    "pyright",
-    "vulture",
-]
+dev = ["pre-commit", "setuptools-scm", "pyright", "vulture"]
 test = [
-    "pytest-runner",
+    "pytest",
     "pytest-cov",
     "pytest-env",
+    "pytest-ordering",
+    "pytest-randomly",
+    "pytest-rerunfailures",
+    "pytest-runner",
+    "pytest-sugar",
+    "pytest-timeout",
     "pytest-vcr",
     "pytest-xdist",
+    "freezegun",
+    "hypothesis",
 ]
 docs = [
     "sphinx",
@@ -120,7 +121,7 @@ ignore = [
 docstring-code-format = true
 
 [tool.pytest.ini_options]
-addopts = "--strict-markers --cov=reuters_data_wire --cov-branch --cov-report=term-missing:skip-covered --cov-context=test --cov-fail-under=70 -n auto --timeout=60"
+# addopts = "--strict-markers --cov=your_package_name --cov-branch --cov-report=term-missing:skip-covered --cov-context=test --cov-fail-under=70 -n auto --timeout=60"
 testpaths = ["tests"]
 python_files = "test_*.py"
 markers = [
@@ -145,13 +146,7 @@ omit = ["*/__pycache__/*"]
 venvPath = "."
 venv = ".venv"
 # include = ["your_package_name"]
-exclude = [
-    "tests",
-    "build",
-    ".venv",
-    "_notebooks",
-    "**/__pycache__",
-]
+exclude = ["tests", "build", ".venv", "_notebooks", "**/__pycache__"]
 
 # Type checking mode - "off", "basic", "standard", or "strict"
 typeCheckingMode = "standard"
