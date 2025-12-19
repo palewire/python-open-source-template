@@ -1,6 +1,21 @@
 {
-    "recommendations": [
-        "ms-python.python",
-        "ms-toolsai.jupyter"
-    ]
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "ms-python.debugpy",
+    "streetsidesoftware.code-spell-checker",
+    "littlefoxteam.vscode-python-test-adapter",
+    "emeraldwalk.runonsave"
+  ],
+  "unwantedRecommendations": [
+    "ms-python.black-formatter",
+    "ms-python.isort",
+    "ms-python.flake8",
+    "ms-python.pylint"
+  ]
 }
