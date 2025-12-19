@@ -1,3 +1,7 @@
+# Mark all the commands that don't have a target
+.PHONY: help test lint fix format install type-check build clean build-docs serve-docs
+.DEFAULT_GOAL := help
+
 #
 # Colors
 #
@@ -66,6 +70,42 @@ PYTHON := python -W ignore -m
 # Commands
 #
 
+help: ## Show this help. Example: make help
+	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+install: ## Install dependencies with uv
+	$(call banner,  ⚙️  Installing dependencies ⚙️ )
+	uv sync --all-extras
+
+test: ## Run tests with coverage
+	$(call banner,  🧪 Running tests 🧪)
+	uv run pytest --cov -sv
+
+lint: ## Check code with ruff
+	$(call banner,  🛡️  Linting code 🛡️ )
+	uv run ruff check
+
+format: ## Format code with ruff
+	$(call banner,  🎨 Formatting code 🎨 )
+	uv run ruff format
+
+fix: ## Auto-fix linting issues
+	$(call banner,  🔧 Auto-fixing issues 🔧)
+	@uv run ruff check --fix
+
+type-check: ## Verify static typing with pyright
+	$(call banner,  🔍 Verifying static typing 🔍)
+	uv run pyright
+
+build: ## Build distribution packages
+	$(call banner,  📦 Building distribution packages 📦)
+	uv build --sdist --wheel
+
+clean: ## Remove build artifacts
+	$(call banner,  🧹 Cleaning build artifacts 🧹)
+	rm -rf dist/ build/ *.egg-info .pytest_cache .ruff_cache
+	find . -type d -name __pycache__ -exec rm -rf {} +
+
 build-docs: ## Build the docs
 	$(call banner,  📚 Building docs 📚)
 	@rm -rf _build/
@@ -77,17 +117,3 @@ serve-docs: ## Test the site
 	@rm -rf _build/
 	@rm -rf docs/_build
 	@cd docs && $(UV) make livehtml
-
-#
-# Extras
-#
-
-
-help: ## Show this help. Example: make help
-	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
-
-
-# Mark all the commands that don't have a target
-.PHONY: help \
-        format \
-        serve

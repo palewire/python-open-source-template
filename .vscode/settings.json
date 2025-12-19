@@ -110,5 +110,20 @@
                 "cmd": "SKIP=pyright,prettier uv run pre-commit run --files \"${file}\""
             }
         ]
+    },
+
+    "makefile.extensionOutputFolder": "./.vscode",
+    "makefile.launchConfigurations": [],
+    "makefile.loggingLevel": "Normal",
+    "makefile.buildLog": "",
+    "makefile.configurationCachePath": ".vscode/configurationCache.log",
+    "makefile.dryrunSwitches": ["--dry-run", "--print-data-base"],
+    "makefile.makefilePath": "./Makefile",
+    "makefile.makePath": "make",
+    "makefile.preConfigureScript": "",
+    "makefile.panel.visibility": {
+        "debug": true,
+        "build": true,
+        "run": true
     }
 }
