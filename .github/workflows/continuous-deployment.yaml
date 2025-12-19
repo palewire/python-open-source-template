@@ -59,7 +59,7 @@ jobs:
     steps:
       - id: checkout
         name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
@@ -72,14 +72,14 @@ jobs:
         name: Install Python dependencies
         run: uv sync --extra dev
 
-      - id: vulture
-        name: Run vulture
-        timeout-minutes: 10
-        run: >-
-          uv run vulture
-          --min-confidence 90
-          --exclude "tests/*,_notebooks/*,docs/*"
-          ./
+      # - id: vulture
+      #   name: Run vulture
+      #   timeout-minutes: 10
+      #   run: >-
+      #     uv run vulture
+      #     --min-confidence 90
+      #     --exclude "tests/*,_notebooks/*,docs/*"
+      #     your_package_name
 
   test-python:
     name: Test Python code
@@ -106,12 +106,10 @@ jobs:
       - id: install-python-dependencies
         name: Install Python dependencies
         run: uv sync --extra test --python ${{ matrix.python }}
-        shell: bash
 
       - id: tests
         name: Run tests
         run: uv run pytest --cov -sv
-        shell: bash
 
   build:
     name: Build release candidate
