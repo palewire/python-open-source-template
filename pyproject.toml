@@ -29,6 +29,7 @@ classifiers = [
 dev = [
     "pre-commit",
     "setuptools-scm",
+    "pyright",
 ]
 test = [
     "pytest-runner",
@@ -68,3 +69,115 @@ Issues = "https://github.com/palewire/your-respository/issues/"
 # packages = ["your_package_module"]
 
 [tool.setuptools_scm]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle
+    "F",    # pyflakes
+    "B",    # flake8-bugbear
+    "W",    # pycodestyle warnings
+    "I",    # isort - import sorting
+    "UP",   # pyupgrade - modern Python idioms
+    "N",    # pep8-naming - naming conventions
+    "ANN",  # flake8-annotations - type annotations
+    "YTT",  # flake8-2020 - sys.version_info checks
+    "S",    # flake8-bandit - security issues
+    "BLE",  # flake8-blind-except - blind except statements
+    "FA",   # flake8-future-annotations - future annotations
+    "ICN",  # flake8-import-conventions - import conventions
+    "PIE",  # flake8-pie - misc lints
+    "Q",    # flake8-quotes - quote consistency
+    "RSE",  # flake8-raise - raise statement improvements
+    "RET",  # flake8-return - return statement improvements
+    "SLOT", # flake8-slots - __slots__ usage
+    "SIM",  # flake8-simplify - code simplification
+    "TID",  # flake8-tidy-imports - tidy imports
+    "PTH",  # flake8-use-pathlib - pathlib usage
+    "FLY",  # flynt - f-string conversion
+    "PERF", # perflint - performance improvements
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501",    # Line length
+    "F403",    # Star imports
+    "UP046",   # Generic class `Loader` uses `Generic` subclass instead of type parameters
+    "S101",    # Allow assert
+    "SIM103",  # Allow for True/False returns after a test
+    "SIM108",  # Don't force ternary expressions
+    "SIM117",  # Allow for nested with statements
+    "PERF401", # For for appending to a list
+    "RUF001",  # Allow for curly quotes
+    "RUF005",  # Allow for adding lists
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "PLR2004",
+    "ANN",     # Annotations
+    "S105",    # Possible hardcoded password
+    "S108",    # Temp directory
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --cov=reuters_data_wire --cov-branch --cov-report=term-missing:skip-covered --cov-context=test --cov-fail-under=70 -n auto --timeout=60"
+testpaths = ["tests"]
+python_files = "test_*.py"
+markers = [
+    "unit: Unit tests",
+    "component: Component tests",
+    "integration: Integration tests",
+    "e2e: End-to-end tests",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:pandas.*",
+    "ignore::FutureWarning:numpy.*",
+    "ignore::DeprecationWarning:dateutil.*",
+]
+
+[tool.coverage.run]
+# source = ["your_package_module"]
+relative_files = true
+omit = ["*/__pycache__/*"]
+
+[tool.pyright]
+# pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
+# include = ["your_package_name"]
+exclude = [
+    "tests",
+    "build",
+    ".venv",
+    "_notebooks",
+    "**/__pycache__",
+]
+
+# Type checking mode - "off", "basic", "standard", or "strict"
+typeCheckingMode = "standard"
+
+# Disabled for pandas-stubs type inference issues (DataFrame/Series/ndarray ambiguity)
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
+reportUnknownVariableType = false
+reportUnknownParameterType = false
+reportAttributeAccessIssue = false # ndarray missing .iloc, .dt, .str, .groupby
+reportArgumentType = false         # DataFrame vs Series parameter mismatches
+reportReturnType = false           # DataFrame vs Series return mismatches
+reportCallIssue = false            # No overloads for rename, concat, sort_values
+reportAssignmentType = false       # DataFrame vs Series assignment mismatches
+
+# High-value type safety checks (kept enabled)
+reportMissingImports = true
+reportGeneralTypeIssues = true
+reportPossiblyUnboundVariable = true
+reportIncompatibleMethodOverride = true
+reportOptionalMemberAccess = true
+reportOptionalCall = true
+reportUnhashable = true
+
+# Disabled because .configure() class factory pattern requires subclasses to narrow types
+reportIncompatibleVariableOverride = false
