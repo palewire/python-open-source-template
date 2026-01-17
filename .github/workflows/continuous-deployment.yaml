@@ -46,10 +46,10 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --frozen
 
       - id: type-check
-        name: Run ty
+        name: Run type check
         timeout-minutes: 10
         run: uv run ty check
 
@@ -70,7 +70,7 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv sync --extra dev
+        run: uv sync --extra dev --frozen
 
       # - id: vulture
       #   name: Run vulture
@@ -78,7 +78,7 @@ jobs:
       #   run: >-
       #     uv run vulture
       #     --min-confidence 90
-      #     --exclude "tests/*,_notebooks/*,docs/*"
+      #     --exclude "tests/*,docs/*"
       #     your_package_name
 
   test-python:
