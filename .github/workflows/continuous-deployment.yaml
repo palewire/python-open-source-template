@@ -21,15 +21,15 @@ jobs:
         name: Check with Ruff
         uses: astral-sh/ruff-action@v3
         with:
-          args: 'check --exit-zero --verbose'
+          args: "check --exit-zero --verbose"
 
       - id: format-ruff
         name: Format with Ruff
         uses: astral-sh/ruff-action@v3
         with:
-          args: 'format --check --verbose'
+          args: "format --check --verbose"
 
-  pyright:
+  type-check:
     name: Verify static typing
     runs-on: ubuntu-latest
     steps:
@@ -40,18 +40,18 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: 'latest'
+          version: "latest"
           enable-cache: true
-          cache-dependency-glob: '**/pyproject.toml'
+          cache-dependency-glob: "**/pyproject.toml"
 
       - id: install-python-dependencies
         name: Install Python dependencies
         run: uv sync --extra dev
 
-      - id: pyright
-        name: Run pyright
+      - id: type-check
+        name: Run ty
         timeout-minutes: 10
-        run: uv run pyright
+        run: uv run ty check
 
   vulture:
     name: Detect dead code
@@ -64,9 +64,9 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: 'latest'
+          version: "latest"
           enable-cache: true
-          cache-dependency-glob: '**/pyproject.toml'
+          cache-dependency-glob: "**/pyproject.toml"
 
       - id: install-python-dependencies
         name: Install Python dependencies
@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.11', '3.12', '3.13', '3.14']
+        python: ["3.11", "3.12", "3.13", "3.14"]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -97,7 +97,7 @@ jobs:
         with:
           version: "latest"
           enable-cache: true
-          cache-dependency-glob: '**/pyproject.toml'
+          cache-dependency-glob: "**/pyproject.toml"
 
       - id: install-python
         name: Install Python
@@ -125,7 +125,7 @@ jobs:
         with:
           version: "latest"
           enable-cache: true
-          cache-dependency-glob: '**/pyproject.toml'
+          cache-dependency-glob: "**/pyproject.toml"
 
       - id: build
         name: Build releases

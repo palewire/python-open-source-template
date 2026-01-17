@@ -20,7 +20,7 @@ repos:
       - id: check-ast
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.10
+    rev: v0.14.13
     hooks:
       - id: ruff
         args: [--fix]
@@ -59,10 +59,10 @@ repos:
 
   - repo: local
     hooks:
-      - id: pyright
-        name: pyright
-        entry: uv run pyright
+      - id: ty
+        name: ty
+        entry: uv run ty check
         language: system
         types: [python]
-        exclude: tests/.*
         pass_filenames: false
+        require_serial: true

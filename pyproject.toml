@@ -24,7 +24,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pre-commit", "setuptools-scm", "pyright", "vulture"]
+dev = ["pre-commit", "setuptools-scm", "ty", "vulture"]
 test = [
     "pytest",
     "pytest-cov",
@@ -141,36 +141,27 @@ filterwarnings = [
 relative_files = true
 omit = ["*/__pycache__/*"]
 
-[tool.pyright]
-pythonVersion = "3.13"
-venvPath = "."
-venv = ".venv"
+[tool.ty.environment]
+python-version = "3.13"
+
+[tool.ty.src]
 # include = ["your_package_name"]
-exclude = ["tests", "build", ".venv", "_notebooks", "**/__pycache__"]
+exclude = [
+    "tests/**",
+    "build/**",
+    ".venv/**",
+    ".github/**",
+    ".vscode/**",
+    "**/__pycache__",
+]
 
-# Type checking mode - "off", "basic", "standard", or "strict"
-typeCheckingMode = "standard"
-
-# Disabled for pandas-stubs type inference issues (DataFrame/Series/ndarray ambiguity)
-reportMissingTypeStubs = false
-reportUnknownMemberType = false
-reportUnknownArgumentType = false
-reportUnknownVariableType = false
-reportUnknownParameterType = false
-reportAttributeAccessIssue = false # ndarray missing .iloc, .dt, .str, .groupby
-reportArgumentType = false         # DataFrame vs Series parameter mismatches
-reportReturnType = false           # DataFrame vs Series return mismatches
-reportCallIssue = false            # No overloads for rename, concat, sort_values
-reportAssignmentType = false       # DataFrame vs Series assignment mismatches
-
-# High-value type safety checks (kept enabled)
-reportMissingImports = true
-reportGeneralTypeIssues = true
-reportPossiblyUnboundVariable = true
-reportIncompatibleMethodOverride = true
-reportOptionalMemberAccess = true
-reportOptionalCall = true
-reportUnhashable = true
-
-# Disabled because .configure() class factory pattern requires subclasses to narrow types
-reportIncompatibleVariableOverride = false
+[tool.ty.rules]
+invalid-argument-type = "warn"
+invalid-return-type = "warn"
+invalid-key = "warn"
+invalid-assignment = "warn"
+invalid-method-override = "warn"
+unresolved-attribute = "warn"
+possibly-missing-attribute = "warn"
+no-matching-overload = "ignore"
+unused-ignore-comment = "ignore"

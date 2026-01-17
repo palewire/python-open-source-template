@@ -93,9 +93,9 @@ fix: ## Auto-fix linting issues
 	$(call banner,  🔧 Auto-fixing issues 🔧)
 	@uv run ruff check --fix
 
-type-check: ## Verify static typing with pyright
+type-check: ## Verify static typing with ty
 	$(call banner,  🔍 Verifying static typing 🔍)
-	uv run pyright
+	uv run ty check
 
 build: ## Build distribution packages
 	$(call banner,  📦 Building distribution packages 📦)
