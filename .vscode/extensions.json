@@ -11,7 +11,8 @@
     "streetsidesoftware.code-spell-checker",
     "littlefoxteam.vscode-python-test-adapter",
     "emeraldwalk.runonsave",
-    "ms-vscode.makefile-tools"
+    "ms-vscode.makefile-tools",
+    "astral-sh.ty"
   ],
   "unwantedRecommendations": [
     "ms-python.black-formatter",
