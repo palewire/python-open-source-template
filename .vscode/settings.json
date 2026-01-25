@@ -1,5 +1,12 @@
 {
     "chat.useAgentSkills": true,
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    "github.copilot.enable": {
+        "*": true,
+        "markdown": true,
+        "plaintext": true,
+        "yaml": true
+    },
     
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
