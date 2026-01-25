@@ -1,4 +1,6 @@
 {
+    "chat.useAgentSkills": true,
+    
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
 
