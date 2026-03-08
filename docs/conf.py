@@ -32,6 +32,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinxcontrib.mermaid",
+    "sphinx_copybutton",
 ]
 
 # sphinx-palewire-theme settings
