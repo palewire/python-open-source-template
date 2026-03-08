@@ -44,6 +44,7 @@ docs = [
     "sphinx",
     "sphinx-autobuild",
     "sphinxcontrib-mermaid",
+    "sphinx_copybutton",
     "myst-parser",
     "sphinx-palewire-theme",
 ]
