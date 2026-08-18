@@ -5,7 +5,7 @@ UV_PYTHON ?=
 PACKAGE ?=
 COVERAGE_FAIL_UNDER ?= 80
 TEST_WORKERS ?= 0
-RUN = $(UV) run
+RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
 .PHONY: all help install install-all install-dev install-test install-docs check verify diff-check lint format-check format fix type-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
