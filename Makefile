@@ -4,10 +4,10 @@ UV ?= uv
 UV_PYTHON ?=
 PACKAGE ?=
 COVERAGE_FAIL_UNDER ?= 80
-TEST_WORKERS ?= 0
+TEST_ARGS ?=
 RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
-.PHONY: all help install install-all install-dev install-test install-docs check verify diff-check lint format-check format fix type-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
+.PHONY: all help install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "%-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -22,6 +22,9 @@ install-dev: ## Install dependencies for static checks
 
 install-test: ## Install dependencies for tests
 	$(UV) sync --group test --locked $(if $(UV_PYTHON),--python $(UV_PYTHON))
+
+install-test-extras: ## Install optional test utilities
+	$(UV) sync --group test --group test-extras --locked $(if $(UV_PYTHON),--python $(UV_PYTHON))
 
 install-docs: ## Install dependencies for documentation
 	$(UV) sync --group docs --locked
@@ -51,18 +54,17 @@ fix: ## Apply Ruff lint fixes and formatting
 type-check: ## Check static types with ty
 	$(RUN) ty check
 
-test: ## Run tests
-	$(RUN) pytest -n $(TEST_WORKERS) -sv
+test: ## Run tests serially
+	$(RUN) pytest $(TEST_ARGS)
 
-test-serial: TEST_WORKERS = 0
 test-serial: test ## Run tests without parallel workers
 
-test-parallel: TEST_WORKERS = auto
-test-parallel: test ## Run independent tests with parallel workers
+test-parallel: ## Run independent tests with parallel workers
+	$(RUN) pytest -n auto $(TEST_ARGS)
 
 coverage: ## Enforce coverage for PACKAGE
 	@test -n "$(PACKAGE)" || { echo "Set PACKAGE to the library import name."; exit 2; }
-	$(RUN) pytest -n $(TEST_WORKERS) --cov="$(PACKAGE)" --cov-branch --cov-report=term-missing:skip-covered --cov-fail-under="$(COVERAGE_FAIL_UNDER)" -sv
+	$(RUN) pytest $(TEST_ARGS) --cov="$(PACKAGE)" --cov-branch --cov-report=term-missing:skip-covered --cov-fail-under="$(COVERAGE_FAIL_UNDER)"
 
 build: ## Build source and wheel distributions
 	$(UV) build --sdist --wheel

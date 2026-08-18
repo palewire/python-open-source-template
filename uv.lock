@@ -3345,19 +3345,21 @@ notebooks = [
     { name = "xlrd" },
 ]
 test = [
-    { name = "freezegun" },
-    { name = "hypothesis" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "pytest-timeout" },
+    { name = "pytest-xdist" },
+]
+test-extras = [
+    { name = "freezegun" },
+    { name = "hypothesis" },
     { name = "pytest-env" },
     { name = "pytest-ordering" },
     { name = "pytest-randomly" },
     { name = "pytest-rerunfailures" },
     { name = "pytest-runner" },
     { name = "pytest-sugar" },
-    { name = "pytest-timeout" },
     { name = "pytest-vcr" },
-    { name = "pytest-xdist" },
 ]
 
 [package.metadata]
@@ -3389,17 +3391,19 @@ notebooks = [
     { name = "xlrd" },
 ]
 test = [
-    { name = "freezegun" },
-    { name = "hypothesis" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "pytest-timeout" },
+    { name = "pytest-xdist" },
+]
+test-extras = [
+    { name = "freezegun" },
+    { name = "hypothesis" },
     { name = "pytest-env" },
     { name = "pytest-ordering" },
     { name = "pytest-randomly" },
     { name = "pytest-rerunfailures" },
     { name = "pytest-runner" },
     { name = "pytest-sugar" },
-    { name = "pytest-timeout" },
     { name = "pytest-vcr" },
-    { name = "pytest-xdist" },
 ]
