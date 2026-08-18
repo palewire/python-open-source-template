@@ -158,7 +158,7 @@ relative_files = true
 omit = ["*/__pycache__/*"]
 
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.11"
 
 [tool.ty.src]
 # Set include = ["src/your_package_name"] after adding the library package.
@@ -179,5 +179,8 @@ invalid-assignment = "error"
 invalid-method-override = "error"
 unresolved-attribute = "error"
 possibly-missing-attribute = "error"
-no-matching-overload = "ignore"
-unused-ignore-comment = "ignore"
+missing-type-argument = "error"
+no-matching-overload = "error"
+unsound-return-statement = "error"
+possibly-unresolved-reference = "warn"
+unused-ignore-comment = "error"

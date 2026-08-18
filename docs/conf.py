@@ -6,7 +6,7 @@ from importlib.metadata import version as distribution_version
 
 distribution = metadata("your-package-name")
 project = distribution["Name"]
-author = distribution.get("Author") or distribution.get("Author-email", "")
+author = distribution["Author"] or distribution["Author-email"]
 version = distribution_version(project)
 release = version
 year = datetime.now(UTC).year
