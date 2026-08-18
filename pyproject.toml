@@ -7,23 +7,31 @@ name = "your-package-name"
 dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = []
-authors = [{ name = "Ben Welsh", email = "b@palewi.re" }]
-description = "Your package description"
-license = { text = "MIT" }
+authors = [{ name = "Your Name", email = "you@example.com" }]
+description = "A short description of your package"
+keywords = []
+license = "MIT"
+license-files = ["LICENSE"]
 readme = "README.md"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 3 - Alpha",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
-    "License :: OSI Approved :: MIT License",
 ]
 
-[project.optional-dependencies]
+[project.urls]
+Documentation = "https://example.com/your-package-name"
+Source = "https://github.com/your-org/your-package-name"
+Issues = "https://github.com/your-org/your-package-name/issues"
+
+# [project.scripts]
+# your-command = "your_package_name.cli:main"
+
+[dependency-groups]
 dev = ["pre-commit", "setuptools-scm", "ty", "vulture"]
 test = [
     "pytest",
@@ -59,16 +67,17 @@ notebooks = [
     "altair",
 ]
 
-[project.urls]
-Documentation = "https://palewi.re/docs/your-respository/"
-Maintainer = "https://github.com/palewire/"
-Source = "https://github.com/palewire/your-respository/"
-Issues = "https://github.com/palewire/your-respository/issues/"
-
-# [tool.setuptools]
-# packages = ["your_package_module"]
+# Adopt a src/ layout when adding a library:
+# [tool.setuptools.package-dir]
+# "" = "src"
+#
+# [tool.setuptools.packages.find]
+# where = ["src"]
 
 [tool.setuptools_scm]
+
+[tool.ruff]
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [
@@ -122,9 +131,10 @@ ignore = [
 docstring-code-format = true
 
 [tool.pytest.ini_options]
-# addopts = "--strict-markers --cov=your_package_name --cov-branch --cov-report=term-missing:skip-covered --cov-context=test --cov-fail-under=70 -n auto --timeout=60"
+addopts = ["--strict-config", "--strict-markers", "--durations=10"]
 testpaths = ["tests"]
 python_files = "test_*.py"
+timeout = 60
 markers = [
     "unit: Unit tests",
     "component: Component tests",
@@ -138,7 +148,8 @@ filterwarnings = [
 ]
 
 [tool.coverage.run]
-# source = ["your_package_module"]
+# Set source = ["your_package_name"] after adding the library package.
+branch = true
 relative_files = true
 omit = ["*/__pycache__/*"]
 
@@ -146,7 +157,7 @@ omit = ["*/__pycache__/*"]
 python-version = "3.13"
 
 [tool.ty.src]
-# include = ["your_package_name"]
+# Set include = ["src/your_package_name"] after adding the library package.
 exclude = [
     "tests/**",
     "build/**",
@@ -157,12 +168,12 @@ exclude = [
 ]
 
 [tool.ty.rules]
-invalid-argument-type = "warn"
-invalid-return-type = "warn"
-invalid-key = "warn"
-invalid-assignment = "warn"
-invalid-method-override = "warn"
-unresolved-attribute = "warn"
-possibly-missing-attribute = "warn"
+invalid-argument-type = "error"
+invalid-return-type = "error"
+invalid-key = "error"
+invalid-assignment = "error"
+invalid-method-override = "error"
+unresolved-attribute = "error"
+possibly-missing-attribute = "error"
 no-matching-overload = "ignore"
 unused-ignore-comment = "ignore"

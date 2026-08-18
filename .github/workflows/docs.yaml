@@ -1,7 +1,13 @@
 name: Documentation
 
+permissions:
+  contents: read
+
 on:
   push:
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
   workflow_dispatch:
 
 concurrency:
@@ -12,6 +18,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    if: github.event_name != 'schedule'
     steps:
       - id: checkout
         name: Checkout
@@ -21,9 +28,9 @@ jobs:
         name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          version: "latest"
+          version: "0.10.7"
           enable-cache: true
-          cache-dependency-glob: '**/pyproject.toml'
+          cache-dependency-glob: "uv.lock"
 
       - id: install-python
         name: Install Python
@@ -31,46 +38,81 @@ jobs:
 
       - id: install-python-dependencies
         name: Install Python dependencies
-        run: uv sync --extra docs
+        run: make install-docs
 
       - id: build-sphinx-documentation
         name: Build Sphinx documentation
-        run: uv run sphinx-build -M html ./docs ./_build/
+        run: make docs-check
+
+      - name: Prune uv cache
+        run: uv cache prune --ci
 
       - id: upload-release-candidate
         name: Upload release candidate
         uses: actions/upload-artifact@v7
         with:
           name: release-candidate
-          path: ./_build/html/
+          path: ./docs/_build/html/
+          if-no-files-found: error
+          retention-days: 7
 
-  # deploy:
-  #   name: Deploy
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   if: ${{ github.ref_name == 'main' }}
-  #   steps:
-  #     - name: Download release candidate
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: release-candidate
-  #         path: ./docs/
+  linkcheck:
+    name: Check documentation links
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
 
-  #     - id: configure-aws
-  #       name: Configure AWS Credentials
-  #       uses: aws-actions/configure-aws-credentials@v4
-  #       with:
-  #         aws-access-key-id: ${{ secrets.DOCS_AWS_ACCESS_KEY_ID }}
-  #         aws-secret-access-key: ${{ secrets.DOCS_AWS_SECRET_ACCESS_KEY }}
-  #         aws-region: ${{ secrets.DOCS_AWS_REGION }}
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.10.7"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
 
-  #     - id: upload-to-s3
-  #       name: Upload documentation to Amazon S3
-  #       uses: datadesk/delivery-deploy-action@v1
-  #       with:
-  #         bucket: ${{ secrets.DOCS_AWS_BUCKET }}
-  #         base-path: ${{ secrets.DOCS_AWS_BASE_PATH }}
-  #         dir: ./docs/
-  #         should-cache: false
-  #         use-accelerate-endpoint: false
-  #         public: true
+      - name: Install Python dependencies
+        run: make install-docs
+
+      - name: Check documentation links
+        run: make linkcheck
+
+      - name: Prune uv cache
+        run: uv cache prune --ci
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'main' && vars.DOCS_DEPLOY_ENABLED == 'true'
+    environment: docs-production
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: docs-deploy
+      cancel-in-progress: true
+    steps:
+      - name: Download release candidate
+        uses: actions/download-artifact@v8
+        with:
+          name: release-candidate
+          path: docs-site
+
+      - id: configure-aws
+        name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.DOCS_AWS_ROLE_ARN }}
+          aws-region: ${{ vars.DOCS_AWS_REGION }}
+
+      - id: upload-to-s3
+        name: Upload documentation to Amazon S3
+        uses: datadesk/delivery-deploy-action@v1
+        with:
+          bucket: ${{ secrets.DOCS_AWS_BUCKET }}
+          base-path: ${{ secrets.DOCS_AWS_BASE_PATH }}
+          dir: ./docs-site
+          should-cache: false
+          use-accelerate-endpoint: false
+          public: true
