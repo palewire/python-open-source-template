@@ -61,7 +61,7 @@ jobs:
 
       - id: tests
         name: Run tests
-        run: make test
+        run: make test UV_PYTHON=${{ matrix.python }}
 
       - name: Verify package distribution
         if: matrix.python == '3.13' && vars.PACKAGE_IMPORT_NAME != ''
