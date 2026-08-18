@@ -100,4 +100,6 @@ publications without explicit human approval.
 - Add tests for new library behavior under `tests/`.
 - Use the configured Ruff and ty checks; do not introduce duplicate tooling
   without a project need.
-- Do not commit generated build output, virtual environments, or `.env` files.
+- Copy `.env.example` to `.env` for local environment configuration. Do not
+  commit generated build output, virtual environments, `.env` files, or
+  credentials.
