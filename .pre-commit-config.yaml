@@ -1,10 +1,14 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace
+        stages: [pre-commit]
       - id: fix-byte-order-marker
       - id: check-case-conflict
       - id: mixed-line-ending
@@ -13,11 +17,19 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
         args: [--maxkb=99000]
+        stages: [pre-commit]
       - id: check-json
       - id: forbid-submodules
       - id: end-of-file-fixer
+        stages: [pre-commit]
       - id: debug-statements
       - id: check-ast
+      - id: detect-private-key
+      - id: check-shebang-scripts-are-executable
+        stages: [pre-commit]
+      - id: check-executables-have-shebangs
+        stages: [pre-commit]
+      - id: check-symlinks
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.16.3
@@ -26,11 +38,17 @@ repos:
         args: [--fix]
       - id: ruff-format
 
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
   - repo: https://github.com/asottile/blacken-docs
     rev: 1.20.0
     hooks:
       - id: blacken-docs
         additional_dependencies: [black]
+        files: ^(?:README\.md|docs/.*\.(?:md|rst))$
 
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
@@ -66,3 +84,5 @@ repos:
         types: [python]
         pass_filenames: false
         require_serial: true
+        stages: [pre-push]
+        always_run: true
