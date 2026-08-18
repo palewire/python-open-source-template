@@ -1,6 +1,6 @@
 """Configuration file for the Sphinx documentation builder."""
 
-from datetime import datetime
+from datetime import UTC, datetime
 from importlib.metadata import metadata
 from importlib.metadata import version as distribution_version
 
@@ -9,7 +9,7 @@ project = distribution["Name"]
 author = distribution.get("Author") or distribution.get("Author-email", "")
 version = distribution_version(project)
 release = version
-year = datetime.now().year
+year = datetime.now(UTC).year
 copyright = f"{year}, {author}"
 
 language = "en"
