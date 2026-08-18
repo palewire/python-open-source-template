@@ -1,5 +1,22 @@
+include .codespell-ignore-words.txt
+include .editorconfig
+include .gitattributes
+include .gitignore
+include .pre-commit-config.yaml
+include .python-version
+include AGENTS.md
+include CHANGELOG.md
 include LICENSE
 include README.md
 include CODE_OF_CONDUCT.md
 include CONTRIBUTING.md
+include Makefile
+include RELEASING.md
 include SECURITY.md
+include TEMPLATE_SETUP.md
+include uv.lock
+include zizmor.yml
+recursive-include .devcontainer *
+recursive-include .github *
+recursive-include docs *.md *.py Makefile
+recursive-include tests *.py

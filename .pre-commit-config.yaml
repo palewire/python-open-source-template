@@ -77,6 +77,13 @@ repos:
 
   - repo: local
     hooks:
+      - id: zizmor
+        name: zizmor
+        entry: uv run zizmor .github/workflows
+        language: system
+        files: ^\.github/workflows/.*\.ya?ml$
+        pass_filenames: false
+
       - id: ty
         name: ty
         entry: uv run ty check
