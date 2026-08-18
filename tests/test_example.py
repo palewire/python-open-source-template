@@ -1,6 +1,9 @@
 """Test the example module."""
 
+import pytest
 
-def test_example(tmpdir):
+
+@pytest.mark.unit
+def test_example():
     """Test some simple math."""
     assert 2 + 2 == 4
