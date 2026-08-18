@@ -61,8 +61,7 @@ That means that everything necessary to make a release can be done with a few cl
 
 Before you can begin, you have to do the following one-time configuration:
 
-* Visit PyPI and [create an API key](https://pypi.org/help/#apitoken) with permission to release a package
-* Save the key as a secret called `PYPI_API_TOKEN` [in your repository settings](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-github-codespaces)
+* On PyPI, [add a trusted publisher](https://docs.pypi.org/trusted-publishers/adding-a-publisher/) for this GitHub repository and `.github/workflows/continuous-deployment.yaml`. Leave the environment name blank unless you add one to the workflow.
 
 Once that is done, you can automatically release new versions. Here’s how to do it, step by step. The screenshots are from a different repository, but the process is the same.
 
