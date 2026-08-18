@@ -26,6 +26,12 @@ make verify  # Checks, tests, package build, and strict documentation build
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contributor guidance and
 [AGENTS.md](AGENTS.md) for agent instructions.
 
+## Dev Container
+
+Open the repository in a Dev Container to use the pinned Python and uv
+environment. It installs all dependency groups and the configured Git hooks on
+creation, while retaining the uv download cache between rebuilds.
+
 ## Documentation and Releases
 
 Documentation lives in `docs/` and is built with Sphinx using the Palewire
