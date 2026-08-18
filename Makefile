@@ -7,7 +7,7 @@ COVERAGE_FAIL_UNDER ?= 80
 TEST_ARGS ?=
 RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
-.PHONY: all help install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
+.PHONY: all help install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check dependency-check workflow-check manifest-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "%-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -31,9 +31,9 @@ install-docs: ## Install dependencies for documentation
 
 all: verify ## Run the complete verification suite
 
-check: diff-check lint format-check type-check ## Run fast, non-mutating code checks
+check: diff-check lint format-check type-check dependency-check workflow-check ## Run fast, non-mutating code checks
 
-verify: check test build docs-check ## Run all local CI checks
+verify: check test manifest-check build docs-check ## Run all local CI checks
 
 diff-check: ## Check the diff for whitespace errors
 	git diff --check
@@ -54,6 +54,15 @@ fix: ## Apply Ruff lint fixes and formatting
 type-check: ## Check static types with ty
 	$(RUN) ty check
 
+dependency-check: ## Check dependency declarations with Deptry
+	$(RUN) deptry .
+
+workflow-check: ## Audit GitHub Actions workflows with Zizmor
+	$(RUN) zizmor .github/workflows
+
+manifest-check: ## Check source distribution contents
+	$(RUN) check-manifest
+
 test: ## Run tests serially
 	$(RUN) pytest $(TEST_ARGS)
 
@@ -67,12 +76,15 @@ coverage: ## Enforce coverage for PACKAGE
 	$(RUN) pytest $(TEST_ARGS) --cov="$(PACKAGE)" --cov-branch --cov-report=term-missing:skip-covered --cov-fail-under="$(COVERAGE_FAIL_UNDER)"
 
 build: ## Build source and wheel distributions
+	rm -rf dist
 	$(UV) build --sdist --wheel
+	$(RUN) twine check dist/*
 
 package-check: ## Build, install, and import PACKAGE in an isolated environment
 	@test -n "$(PACKAGE)" || { echo "Set PACKAGE to the library import name."; exit 2; }
 	@temp_dir=$$(mktemp -d); trap 'rm -rf "$$temp_dir"' EXIT; \
 	$(UV) build --wheel --out-dir "$$temp_dir/dist"; \
+	$(RUN) check-wheel-contents "$$temp_dir"/dist/*.whl; \
 	$(UV) venv --no-project "$$temp_dir/venv"; \
 	$(UV) pip install --python "$$temp_dir/venv/bin/python" "$$temp_dir"/dist/*.whl; \
 	cd "$$temp_dir" && "$$temp_dir/venv/bin/python" -c 'import importlib; importlib.import_module("$(PACKAGE)")'

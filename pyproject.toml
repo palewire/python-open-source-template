@@ -32,7 +32,18 @@ Issues = "https://github.com/your-org/your-package-name/issues"
 # your-command = "your_package_name.cli:main"
 
 [dependency-groups]
-dev = ["pre-commit", "ruff", "setuptools-scm", "ty", "vulture"]
+dev = [
+    "check-manifest",
+    "check-wheel-contents",
+    "deptry",
+    "pre-commit",
+    "ruff",
+    "setuptools-scm",
+    "twine",
+    "ty",
+    "vulture",
+    "zizmor",
+]
 test = [
     "pytest",
     "pytest-cov",

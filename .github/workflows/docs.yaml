@@ -23,6 +23,8 @@ jobs:
       - id: checkout
         name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - id: install-uv
         name: Install uv
@@ -63,6 +65,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v10.0.1
