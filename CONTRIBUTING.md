@@ -5,7 +5,7 @@ Clone the repository. Move into the directory on your terminal.
 Install dependencies for development.
 
 ```sh
-uv sync --all-extras
+make install
 ```
 
 Install pre-commit to run a battery of automatic quick fixes against your work.
@@ -14,13 +14,20 @@ Install pre-commit to run a battery of automatic quick fixes against your work.
 uv run pre-commit install
 ```
 
-Run tests.
+Run the fast, non-mutating checks.
 
 ```sh
-uv run pytest
+make check
 ```
 
-Before you release your package, be sure to customize the `setup.py` file to fit your project.
+Run the complete local verification suite before opening a pull request.
+
+```sh
+make verify
+```
+
+Before releasing, customize the package metadata in `pyproject.toml` and follow
+the [release checklist](RELEASING.md).
 
 ## Documentation
 
@@ -40,9 +47,11 @@ You can launch a preview site with the following command:
 make serve-docs
 ```
 
-The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push to the repository. If you provide the proper credentials, it will also automatically publish the documentation to an Amazon S3 bucket after a push to the main branch.
+The documentation site is automatically built by a [GitHub Actions workflow](https://github.com/palewire/python-open-source-template/blob/main/.github/workflows/docs.yaml) that runs on every push and pull request. It checks links weekly. Protect the `docs-production` environment, configure its AWS OIDC role, and set `DOCS_DEPLOY_ENABLED` to `true` to publish the reviewed artifact from the main branch.
 
 ## Releasing
+
+Follow [RELEASING.md](RELEASING.md) before using the walkthrough below.
 
 # Releasing
 

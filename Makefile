@@ -1,119 +1,100 @@
-# Mark all the commands that don't have a target
-.PHONY: help test lint fix format install type-check build clean build-docs serve-docs
 .DEFAULT_GOAL := help
 
-#
-# Colors
-#
+UV ?= uv
+UV_PYTHON ?=
+PACKAGE ?=
+COVERAGE_FAIL_UNDER ?= 80
+TEST_WORKERS ?= 0
+RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
-# Define ANSI color codes
-RESET_COLOR   = \033[m
+.PHONY: all help install install-all install-dev install-test install-docs check verify diff-check lint format-check format fix type-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
-BLUE       = \033[1;34m
-YELLOW     = \033[1;33m
-GREEN      = \033[1;32m
-RED        = \033[1;31m
-BLACK      = \033[1;30m
-MAGENTA    = \033[1;35m
-CYAN       = \033[1;36m
-WHITE      = \033[1;37m
+help: ## Show available commands
+	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "%-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-DBLUE      = \033[0;34m
-DYELLOW    = \033[0;33m
-DGREEN     = \033[0;32m
-DRED       = \033[0;31m
-DBLACK     = \033[0;30m
-DMAGENTA   = \033[0;35m
-DCYAN      = \033[0;36m
-DWHITE     = \033[0;37m
+install: install-all ## Install all development dependencies
 
-BG_WHITE   = \033[47m
-BG_RED     = \033[41m
-BG_GREEN   = \033[42m
-BG_YELLOW  = \033[43m
-BG_BLUE    = \033[44m
-BG_MAGENTA = \033[45m
-BG_CYAN    = \033[46m
+install-all: ## Install every optional dependency group
+	$(UV) sync --all-groups --locked
 
-# Name some of the colors
-COM_COLOR   = $(DBLUE)
-OBJ_COLOR   = $(DCYAN)
-OK_COLOR    = $(DGREEN)
-ERROR_COLOR = $(DRED)
-WARN_COLOR  = $(DYELLOW)
-NO_COLOR    = $(RESET_COLOR)
+install-dev: ## Install dependencies for static checks
+	$(UV) sync --group dev --locked
 
-OK_STRING    = "[OK]"
-ERROR_STRING = "[ERROR]"
-WARN_STRING  = "[WARNING]"
+install-test: ## Install dependencies for tests
+	$(UV) sync --group test --locked $(if $(UV_PYTHON),--python $(UV_PYTHON))
 
-define banner
-    @echo "  $(WHITE)__________$(RESET_COLOR)"
-    @echo "$(WHITE) |$(DWHITE) PALEWIRE $(RESET_COLOR)$(WHITE)|$(RESET_COLOR)"
-    @echo "$(WHITE) |&&& ======|$(RESET_COLOR)"
-    @echo "$(WHITE) |=== ======|$(RESET_COLOR)  $(DWHITE)This is a $(RESET_COLOR)$(DBLACK)$(BG_WHITE)palewire$(RESET_COLOR)$(DWHITE) automation$(RESET_COLOR)"
-    @echo "$(WHITE) |=== == %%%|$(RESET_COLOR)"
-    @echo "$(WHITE) |[_] ======|$(RESET_COLOR)  $(1)"
-    @echo "$(WHITE) |=== ===!##|$(RESET_COLOR)"
-    @echo "$(WHITE) |__________|$(RESET_COLOR)"
-    @echo ""
-endef
+install-docs: ## Install dependencies for documentation
+	$(UV) sync --group docs --locked
 
-#
-# Python helpers
-#
+all: verify ## Run the complete verification suite
 
-UV := uv run
-PYTHON := python -W ignore -m
+check: diff-check lint format-check type-check ## Run fast, non-mutating code checks
 
-#
-# Commands
-#
+verify: check test build docs-check ## Run all local CI checks
 
-help: ## Show this help. Example: make help
-	@egrep -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+diff-check: ## Check the diff for whitespace errors
+	git diff --check
 
-install: ## Install dependencies with uv
-	$(call banner,  ⚙️  Installing dependencies ⚙️ )
-	uv sync --all-extras
+lint: ## Check code with Ruff
+	$(RUN) ruff check
 
-test: ## Run tests with coverage
-	$(call banner,  🧪 Running tests 🧪)
-	uv run pytest --cov -sv
+format-check: ## Check formatting with Ruff
+	$(RUN) ruff format --check
 
-lint: ## Check code with ruff
-	$(call banner,  🛡️  Linting code 🛡️ )
-	uv run ruff check
+format: ## Format code with Ruff
+	$(RUN) ruff format
 
-format: ## Format code with ruff
-	$(call banner,  🎨 Formatting code 🎨 )
-	uv run ruff format
+fix: ## Apply Ruff lint fixes and formatting
+	$(RUN) ruff check --fix
+	$(RUN) ruff format
 
-fix: ## Auto-fix linting issues
-	$(call banner,  🔧 Auto-fixing issues 🔧)
-	@uv run ruff check --fix
+type-check: ## Check static types with ty
+	$(RUN) ty check
 
-type-check: ## Verify static typing with ty
-	$(call banner,  🔍 Verifying static typing 🔍)
-	uv run ty check
+test: ## Run tests
+	$(RUN) pytest -n $(TEST_WORKERS) -sv
 
-build: ## Build distribution packages
-	$(call banner,  📦 Building distribution packages 📦)
-	uv build --sdist --wheel
+test-serial: TEST_WORKERS = 0
+test-serial: test ## Run tests without parallel workers
 
-clean: ## Remove build artifacts
-	$(call banner,  🧹 Cleaning build artifacts 🧹)
-	rm -rf dist/ build/ *.egg-info .pytest_cache .ruff_cache
-	find . -type d -name __pycache__ -exec rm -rf {} +
+test-parallel: TEST_WORKERS = auto
+test-parallel: test ## Run independent tests with parallel workers
 
-build-docs: ## Build the docs
-	$(call banner,  📚 Building docs 📚)
-	@rm -rf _build/
-	@rm -rf docs/_build
-	@cd docs && $(UV) make html
+coverage: ## Enforce coverage for PACKAGE
+	@test -n "$(PACKAGE)" || { echo "Set PACKAGE to the library import name."; exit 2; }
+	$(RUN) pytest -n $(TEST_WORKERS) --cov="$(PACKAGE)" --cov-branch --cov-report=term-missing:skip-covered --cov-fail-under="$(COVERAGE_FAIL_UNDER)" -sv
 
-serve-docs: ## Test the site
-	$(call banner,  🧪 Serving test site 🧪)
-	@rm -rf _build/
-	@rm -rf docs/_build
-	@cd docs && $(UV) make livehtml
+build: ## Build source and wheel distributions
+	$(UV) build --sdist --wheel
+
+package-check: ## Build, install, and import PACKAGE in an isolated environment
+	@test -n "$(PACKAGE)" || { echo "Set PACKAGE to the library import name."; exit 2; }
+	@temp_dir=$$(mktemp -d); trap 'rm -rf "$$temp_dir"' EXIT; \
+	$(UV) build --wheel --out-dir "$$temp_dir/dist"; \
+	$(UV) venv --no-project "$$temp_dir/venv"; \
+	$(UV) pip install --python "$$temp_dir/venv/bin/python" "$$temp_dir"/dist/*.whl; \
+	cd "$$temp_dir" && "$$temp_dir/venv/bin/python" -c 'import importlib; importlib.import_module("$(PACKAGE)")'
+
+package-verify: package-check coverage ## Run package import and coverage checks
+
+docs: ## Build HTML documentation
+	$(RUN) sphinx-build -M html docs docs/_build
+
+docs-check: ## Build documentation and fail on warnings
+	$(RUN) sphinx-build -M html docs docs/_build -W --keep-going
+
+linkcheck: ## Check documentation links and fail on warnings
+	$(RUN) sphinx-build -M linkcheck docs docs/_build -W --keep-going
+
+build-docs: docs ## Build HTML documentation
+
+serve-docs: ## Serve documentation with live reload
+	$(RUN) sphinx-autobuild -b html docs docs/_build/html
+
+hooks: ## Run all pre-commit hooks (may modify files)
+	$(RUN) pre-commit run --all-files
+
+clean: ## Remove generated files and caches
+	rm -rf build dist docs/_build .coverage htmlcov .pytest_cache .ruff_cache .ty
+	find . -maxdepth 1 -type d -name "*.egg-info" -prune -exec rm -rf {} +
+	find . -path ./.venv -prune -o -type d -name __pycache__ -prune -exec rm -rf {} +
