@@ -90,9 +90,10 @@ release sections.
 
 ## Releases
 
-Follow `RELEASING.md`. Agents may prepare release notes and validate a release,
-but must not create tags, releases, documentation deployments, or package
-publications without explicit human approval.
+Follow `RELEASING.md`, including the post-merge GitHub Release follow-up. Agents
+may prepare release notes and validate a release, but must not create tags,
+releases, documentation deployments, or package publications without explicit
+human approval.
 
 ## Change Guidelines
 
