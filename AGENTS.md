@@ -90,8 +90,13 @@ release sections.
 
 ## Releases
 
-Follow `RELEASING.md`, including the post-merge GitHub Release follow-up. Agents
-may prepare release notes and validate a release, but must not create tags,
+Follow `RELEASING.md` for the full checklist. The routine order is: merge the
+approved release PR, confirm the exact version tag resolves to its merge
+commit, obtain explicit approval for the tag-triggered package publication,
+then create a public GitHub Release from that existing tag with concise
+changelog-based notes. Verify that the release is neither a draft nor a
+prerelease and that its tag still resolves to the expected commit. Agents may
+prepare release notes and validate a release, but must not create tags,
 releases, documentation deployments, or package publications without explicit
 human approval.
 

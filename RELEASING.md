@@ -19,16 +19,17 @@ Git tags through `setuptools-scm`; do not edit a version file.
 - [ ] Obtain explicit human approval for the version and release.
 - [ ] Merge the approved release PR.
 - [ ] With explicit human approval, create or confirm the exact version tag on
-      the release PR's merge commit.
-- [ ] Complete the post-merge GitHub Release follow-up below.
+      the release PR's merge commit to trigger package publication.
 - [ ] Confirm the release workflow published the expected package to PyPI.
+- [ ] Complete the post-merge GitHub Release follow-up below.
 - [ ] Confirm the documentation workflow deployed the matching Sphinx site.
 
 ## Post-merge GitHub Release Follow-up
 
-Do not create the GitHub Release until the release PR has merged and the exact
-version tag exists. The tag must point to the expected merge commit. Creating a
-tag or release still requires explicit human approval.
+Do not create the GitHub Release until the release PR has merged, the exact
+version tag exists, and the approved package publication has completed. The tag
+must point to the expected merge commit. Creating a tag, publishing a package,
+or creating a release still requires explicit human approval.
 
 1. Record the release PR's merge commit and confirm the exact tag resolves to
    it:
@@ -41,8 +42,8 @@ tag or release still requires explicit human approval.
    ```
 
 2. Prepare concise release notes from the matching version section in
-   `CHANGELOG.md`. After explicit human approval, create the GitHub Release
-   from the existing tag:
+   `CHANGELOG.md`. After the package publication succeeds and with explicit
+   human approval, create the GitHub Release from the existing tag:
 
    ```sh
    gh release create "$VERSION" \
