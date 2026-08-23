@@ -59,8 +59,14 @@ URLs.
 Install dependencies with:
 
 ```sh
-make install
+make bootstrap
 ```
+
+The bootstrap uses Git metadata to identify the primary checkout. In a linked
+worktree, it can share the primary checkout's ignored `.env` and creates an
+ignored `.env.worktree` with a stable `WORKTREE_ID`. Applications must
+explicitly load dotenv files; when they do, `.env.worktree` should load after
+`.env`.
 
 Use these commands while making changes:
 
@@ -73,6 +79,20 @@ make test-parallel  # Use for a large, independent test suite
 
 Use `make fix` or `make format` only when changes to source files are
 intended. `make hooks` may also modify files.
+
+## Worktrees and Parallel Agents
+
+- Edit only the current checkout. Never modify the primary checkout or sibling
+  worktrees.
+- Avoid broad clean, reset, or delete operations. Do not stop services that may
+  be shared with another checkout or agent.
+- Coordinate ownership of conflict-prone files such as lockfiles, schemas,
+  migrations, snapshots, and generated artifacts.
+- Serialize or stack changes that update state which cannot be merged safely.
+- Never hand-edit files declared as generated; use their generator.
+- `pytest-xdist` runs tests in parallel, but it does not isolate external
+  resources across worktrees. Give each worktree separate ports, databases,
+  caches, containers, and similar resources when tests use them.
 
 After adding a library package, verify its wheel can be installed and imported:
 
@@ -106,6 +126,6 @@ human approval.
 - Add tests for new library behavior under `tests/`.
 - Use the configured Ruff and ty checks; do not introduce duplicate tooling
   without a project need.
-- Copy `.env.example` to `.env` for local environment configuration. Do not
-  commit generated build output, virtual environments, `.env` files, or
-  credentials.
+- Copy `.env.example` to `.env` or use `make bootstrap` in a linked worktree.
+  Do not commit generated build output, virtual environments, `.env` files,
+  `.env.worktree`, or credentials.
