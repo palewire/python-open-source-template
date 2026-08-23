@@ -31,7 +31,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Replace PyPI API tokens with trusted publishing and update GitHub Actions to
-  supported versions ([#261], [#262]).
+  supported versions, while skipping publication until a real package is
+  configured ([#261], [#262]).
 - Expand Ruff and ty checks, streamline pre-commit hooks, and improve the
   default pytest configuration ([#263], [#264], [#265], [#266]).
 - Document the required checks and approvals for post-merge GitHub releases
