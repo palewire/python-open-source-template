@@ -7,14 +7,24 @@ GitHub Actions, and agent-friendly project guidance.
 
 1. Use this template to create a repository.
 2. Complete [TEMPLATE_SETUP.md](TEMPLATE_SETUP.md) before the first release.
-3. Install development dependencies:
+3. Bootstrap the checkout and install development dependencies:
 
    ```sh
-   make install
+   make bootstrap
    ```
 
 The template intentionally does not define a package, API, or application.
 Choose those when adapting it.
+
+`make bootstrap` is safe to run again. In a linked Git worktree, it links the
+primary checkout's ignored `.env` when one exists, without replacing any local
+file. It also creates an ignored `.env.worktree` containing a stable
+`WORKTREE_ID` for namespacing ports, databases, caches, or containers. Existing
+local settings in that file are preserved.
+
+Applications must opt in to loading dotenv files. When supported, load the
+shared `.env` first and `.env.worktree` second so worktree-local values take
+precedence. The bootstrap does not assume a web framework or dotenv library.
 
 ## Development
 

@@ -2,11 +2,14 @@
 
 Clone the repository. Move into the directory on your terminal.
 
-Install dependencies for development.
+Prepare the checkout and install dependencies for development.
 
 ```sh
-make install
+make bootstrap
 ```
+
+The command can be run in either the primary checkout or a linked worktree.
+See the [README](README.md) for its environment-file behavior.
 
 Install pre-commit to run a battery of automatic quick fixes against your work.
 

@@ -1,5 +1,6 @@
 include .codespell-ignore-words.txt
 include .editorconfig
+include .env.example
 include .gitattributes
 include .gitignore
 include .pre-commit-config.yaml
@@ -19,4 +20,5 @@ include zizmor.yml
 recursive-include .devcontainer *
 recursive-include .github *
 recursive-include docs *.md *.py Makefile
+recursive-include scripts *.py
 recursive-include tests *.py

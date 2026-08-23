@@ -2,15 +2,19 @@
 
 UV ?= uv
 UV_PYTHON ?=
+PYTHON ?= python3
 PACKAGE ?=
 COVERAGE_FAIL_UNDER ?= 80
 TEST_ARGS ?=
 RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
-.PHONY: all help install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check dependency-check workflow-check manifest-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
+.PHONY: all help bootstrap install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check dependency-check workflow-check manifest-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "%-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+
+bootstrap: ## Prepare this checkout and install locked dependencies
+	$(PYTHON) scripts/worktree_bootstrap.py --uv "$(UV)"
 
 install: install-all ## Install all development dependencies
 
