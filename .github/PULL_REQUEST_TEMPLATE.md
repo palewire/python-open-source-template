@@ -2,6 +2,20 @@
 
 Describe the user-facing problem and the change that addresses it.
 
+## Related Issue
+
+Closes #
+
+## Change Type
+
+Select all that apply.
+
+- [ ] Bug fix
+- [ ] Feature
+- [ ] Documentation
+- [ ] Maintenance
+- [ ] Breaking change
+
 ## Acceptance Criteria
 
 - [ ] The behavior matches the issue or request.
