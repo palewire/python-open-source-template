@@ -19,6 +19,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 pygments_style = "sphinx"
 
 extensions = [
+    "palewire",
     "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
@@ -48,6 +49,8 @@ linkcheck_timeout = 10
 linkcheck_retries = 2
 
 html_theme = "palewire"
-# Set these after choosing the production documentation URL:
-# html_theme_options = {"canonical_url": "https://docs.example.com/"}
+# Set this after choosing the production documentation URL. The Palewire extension
+# derives the theme canonical URL from html_baseurl.
 # html_baseurl = "https://docs.example.com/"
+palewire_layout = "wide"
+palewire_navigation = "sidebar"
