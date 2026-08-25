@@ -49,8 +49,13 @@ configure an AWS OIDC role with `DOCS_AWS_ROLE_ARN` and `DOCS_AWS_REGION`, and
 set the `DOCS_DEPLOY_ENABLED` repository variable to `true`.
 
 When instantiating the template, replace the distribution placeholder in
-`docs/conf.py`, set the Palewire theme canonical and base URLs, and add an API
-reference page using autosummary for the package's public modules. Add
+`docs/conf.py`, set `html_baseurl` to the production documentation URL, and
+add an API reference page using autosummary for the package's public modules.
+The `palewire` extension derives the canonical theme URL from `html_baseurl`
+and provides the `wide` layout and `sidebar` navigation presets; adjust those
+settings only when the project needs a different presentation. For a brand-new,
+simpler documentation project, `uvx sphinx-palewire-theme init` is an optional
+shortcut, not a replacement for this template's richer configuration. Add
 host-specific linkcheck exclusions only for documented, reproducibly unstable
 URLs.
 

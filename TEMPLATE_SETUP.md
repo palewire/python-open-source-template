@@ -11,7 +11,10 @@ Complete this checklist before the first release.
 
 ## Documentation
 
-- [ ] Replace the distribution placeholder and production URLs in `docs/conf.py`.
+- [ ] Replace the distribution placeholder and set `html_baseurl` to the
+      production documentation URL in `docs/conf.py`. The `palewire` extension
+      derives the canonical theme URL from it and provides the `wide` layout and
+      `sidebar` navigation presets, which you can adjust for the project.
 - [ ] Add an autosummary-based API reference for public modules.
 - [ ] Configure S3 deployment through the protected `docs-production`
       environment, AWS OIDC variables, and `DOCS_DEPLOY_ENABLED=true`.
