@@ -10,6 +10,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Enable the Palewire Sphinx extension defaults in the template and document
+  its `html_baseurl` configuration ([#278]).
+
 ### Fixed
 
 ### Removed
@@ -59,3 +62,4 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 [#271]: https://github.com/palewire/python-open-source-template/pull/271
 [#272]: https://github.com/palewire/python-open-source-template/pull/272
 [#273]: https://github.com/palewire/python-open-source-template/pull/273
+[#278]: https://github.com/palewire/python-open-source-template/pull/278
