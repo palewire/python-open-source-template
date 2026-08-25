@@ -1,5 +1,6 @@
 # AI stuff
 .claude
+.goals
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
