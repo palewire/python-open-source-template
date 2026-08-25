@@ -10,6 +10,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+### Fixed
+
+### Removed
+
+### Security
+
+## [2.1.1] - 2026-08-25
+
+### Added
+
+### Changed
+
 - Enable the Palewire Sphinx extension defaults in the template and document
   its `html_baseurl` configuration ([#278]).
 
@@ -47,7 +59,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Security
 
-[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.1.1...HEAD
+[2.1.1]: https://github.com/palewire/python-open-source-template/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/palewire/python-open-source-template/compare/2.0.0...2.1.0
 [#261]: https://github.com/palewire/python-open-source-template/pull/261
 [#262]: https://github.com/palewire/python-open-source-template/pull/262
