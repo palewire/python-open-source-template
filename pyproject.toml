@@ -67,7 +67,7 @@ docs = [
     "sphinxcontrib-mermaid",
     "sphinx_copybutton",
     "myst-parser",
-    "sphinx-palewire-theme>=0.1.8",
+    "sphinx-palewire-theme>=0.1.10",
 ]
 notebooks = [
     "jupyterlab",
