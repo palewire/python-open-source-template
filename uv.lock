@@ -3081,16 +3081,16 @@ wheels = [
 
 [[package]]
 name = "sphinx-palewire-theme"
-version = "0.1.8"
+version = "0.1.10"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "sphinx", version = "9.0.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "sphinx", version = "9.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/27/41/4fc699b592f8c1e4b3fdf5fc48a5c29a615d7910d45f8f5340cc2924178d/sphinx_palewire_theme-0.1.8.tar.gz", hash = "sha256:df57b99ec05aa59a395e165cc5b8d125146634fc5ce50a371cd5783f2a4049b3", size = 105206, upload-time = "2026-08-25T16:30:37.733Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/22/3f/c5d5357ce93abcb9b066a648f596ee028c4a44d05debe192b331e75c68a3/sphinx_palewire_theme-0.1.10.tar.gz", hash = "sha256:415712185cae43328ccd9fbc40ad2d84643d91900a241a5f93b62ea3cb19baac", size = 105983, upload-time = "2026-08-28T10:26:42.196Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ef/26/15c8bd26934642572f3a8a3d1e61a8bd8f344f812c062bf5606f5841550d/sphinx_palewire_theme-0.1.8-py3-none-any.whl", hash = "sha256:f6174a1b556484357169f46ef1fdd2b4ae10e39743d37a0b871db6545f7bb832", size = 14576, upload-time = "2026-08-25T16:30:36.387Z" },
+    { url = "https://files.pythonhosted.org/packages/f3/5b/336a782387ceed979bb99b76aeefbd856a59750b7fcad22fdff66f638004/sphinx_palewire_theme-0.1.10-py3-none-any.whl", hash = "sha256:a16f04c17d55f210ee02d80db55c56372de766797a47fcf7b1a7ff23b3c411e0", size = 15553, upload-time = "2026-08-28T10:26:41.167Z" },
 ]
 
 [[package]]
@@ -3890,7 +3890,7 @@ docs = [
     { name = "sphinx" },
     { name = "sphinx-autobuild" },
     { name = "sphinx-copybutton" },
-    { name = "sphinx-palewire-theme", specifier = ">=0.1.8" },
+    { name = "sphinx-palewire-theme", specifier = ">=0.1.10" },
     { name = "sphinxcontrib-mermaid" },
 ]
 notebooks = [
