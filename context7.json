@@ -1,0 +1,14 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "folders": ["docs"],
+  "excludeFiles": [
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "RELEASING.md",
+    "SECURITY.md",
+    "TEMPLATE_SETUP.md"
+  ]
+}

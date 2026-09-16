@@ -1,0 +1,43 @@
+name: Refresh Context7 index
+
+on:
+  push:
+    paths:
+      - "context7.json"
+      - "README.md"
+      - "docs/**"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: context7-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    name: Request library refresh
+    if: >-
+      github.ref_name == github.event.repository.default_branch &&
+      vars.CONTEXT7_REFRESH_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Request Context7 refresh
+        env:
+          CONTEXT7_API_KEY: ${{ secrets.CONTEXT7_API_KEY }}
+          CONTEXT7_LIBRARY_NAME: /${{ github.repository }}
+        run: |
+          if [ -z "$CONTEXT7_API_KEY" ]; then
+            echo "::error::Set the CONTEXT7_API_KEY repository secret."
+            exit 1
+          fi
+          printf -v authorization "Authorization: %s %s" "Bearer" "$CONTEXT7_API_KEY"
+
+          curl --fail-with-body --retry 3 --retry-all-errors \
+            --silent --show-error --max-time 60 \
+            --request POST \
+            --url https://context7.com/api/v1/refresh \
+            --header "$authorization" \
+            --header "Content-Type: application/json" \
+            --data "{\"libraryName\":\"$CONTEXT7_LIBRARY_NAME\"}"
