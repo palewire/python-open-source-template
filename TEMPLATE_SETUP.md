@@ -21,10 +21,11 @@ Complete this checklist before the first release.
 
 ## Context7
 
-The root `context7.json` intentionally specifies only the current schema.
-Context7 can then infer project metadata, follow the default branch, scan the
-whole repository, and apply its built-in exclusions without template-specific
-placeholders.
+The root `context7.json` uses the current schema, indexes `docs/` and the
+root-level README, and excludes the template's operational files. It omits
+project metadata, branch names, versions, and usage rules so Context7 can infer
+safe defaults without template-specific placeholders. Adjust its paths if the
+project's user documentation lives elsewhere.
 
 - [ ] Publish useful documentation, then [submit the public repository to
       Context7](https://context7.com/add-library).
