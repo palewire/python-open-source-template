@@ -36,9 +36,11 @@ project's user documentation lives elsewhere.
       provide the requested project and documentation details if the automatic
       quality check does not approve it.
 - [ ] Rely on Context7's usage-based automatic refreshes, refresh manually after
-      important releases, or enable `.github/workflows/context7-refresh.yml` by
-      setting a `CONTEXT7_API_KEY` repository secret and the
-      `CONTEXT7_REFRESH_ENABLED=true` repository variable.
+      important releases, or enable `.github/workflows/context7-refresh.yml`.
+      Once enabled with a `CONTEXT7_API_KEY` repository secret and the
+      `CONTEXT7_REFRESH_ENABLED=true` repository variable, it refreshes after
+      each default-branch push so moving documentation files or folders in
+      `context7.json` does not silently disable automated refreshes.
 
 ## Continuous Integration
 

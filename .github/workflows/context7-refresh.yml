@@ -2,16 +2,12 @@ name: Refresh Context7 index
 
 on:
   push:
-    paths:
-      - "context7.json"
-      - "README.md"
-      - "docs/**"
   workflow_dispatch:
 
 permissions: {}
 
 concurrency:
-  group: context7-refresh
+  group: context7-refresh-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

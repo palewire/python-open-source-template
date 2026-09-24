@@ -4,11 +4,22 @@
   "excludeFiles": [
     "AGENTS.md",
     "CHANGELOG.md",
+    "CHANGELOG.mdx",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
     "LICENSE",
+    "LICENSE.md",
     "RELEASING.md",
     "SECURITY.md",
-    "TEMPLATE_SETUP.md"
+    "TEMPLATE_SETUP.md",
+    "agents.md",
+    "changelog.md",
+    "changelog.mdx",
+    "code_of_conduct.md",
+    "contributing.md",
+    "license.md",
+    "releasing.md",
+    "security.md",
+    "template_setup.md"
   ]
 }
