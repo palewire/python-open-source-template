@@ -32,6 +32,12 @@ make verify
 Before releasing, customize the package metadata in `pyproject.toml` and follow
 the [release checklist](RELEASING.md).
 
+## Notebooks
+
+Notebooks live in `_notebooks/` and are paired with `.py` files by Jupytext.
+Run `make notebooks` to launch JupyterLab with live collaboration enabled. See
+`AGENTS.md` for how to connect an AI assistant to an open notebook.
+
 ## Documentation
 
 The repository includes a ready-to-serve documentation site managed by Python's [Sphinx](https://www.sphinx-doc.org/en/master/) framework.

@@ -71,6 +71,8 @@ docs = [
 ]
 notebooks = [
     "jupyterlab",
+    "jupyter-collaboration",
+    "jupytext",
     "ipywidgets",
     "rich",
     "pandas",
@@ -78,6 +80,7 @@ notebooks = [
     "xlrd",
     "openpyxl",
     "altair",
+    "vl-convert-python>=1.9.0",
 ]
 
 # Adopt a src/ layout when adding a library:
