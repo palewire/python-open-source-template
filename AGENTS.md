@@ -167,3 +167,16 @@ Working rules:
 - Altair charts render only in JupyterLab; GitHub's preview shows a text
   placeholder. Also save a PNG of any chart that matters. Saving PNGs needs
   `vl-convert-python` 1.9.0 or newer.
+
+### Keeping Notebooks Reproducible
+
+- Keep notebooks thin. Move stable logic into the package and import it, so it
+  can be tested and reused. Use notebooks for exploration, orchestration, and
+  explanation.
+- Before committing, restart the kernel and run all cells from the top to
+  confirm the notebook still works in order.
+- Seed random number generators so reruns give the same results.
+- Install packages through the `notebooks` dependency group and `uv.lock`, not
+  with `%pip install` or `!pip install` inside a cell.
+- Load data and credentials from paths and environment variables. Never
+  hard-code API keys or tokens in a cell, and never print them in output.
