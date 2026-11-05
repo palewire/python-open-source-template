@@ -137,11 +137,11 @@ human approval.
 
 ## Working on Notebooks with an Assistant
 
-Notebooks live in `_notebooks/`. An assistant can read, edit, and run cells in
+Notebooks live in `notebooks/`. An assistant can read, edit, and run cells in
 an open JupyterLab notebook while the person watches the changes appear in
 their browser tab. This relies on `jupyter-collaboration`, which is in the
 `notebooks` dependency group. Each notebook is paired with a `.py` twin by
-Jupytext (see `_notebooks/jupytext.toml`) so reviewers get a readable diff.
+Jupytext (see `notebooks/jupytext.toml`) so reviewers get a readable diff.
 
 Set this up once per person. The token is a secret: never commit it, and never
 launch JupyterLab with an empty token.

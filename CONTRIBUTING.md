@@ -34,7 +34,7 @@ the [release checklist](RELEASING.md).
 
 ## Notebooks
 
-Notebooks live in `_notebooks/` and are paired with `.py` files by Jupytext.
+Notebooks live in `notebooks/` and are paired with `.py` files by Jupytext.
 Run `make notebooks` to launch JupyterLab with live collaboration enabled. See
 `AGENTS.md` for how to connect an AI assistant to an open notebook.
 
