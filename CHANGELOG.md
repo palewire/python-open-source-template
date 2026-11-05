@@ -16,6 +16,30 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Security
 
+## [2.2.0] - 2026-11-05
+
+### Added
+
+- Add JupyterLab live collaboration with an AI assistant: the `notebooks`
+  dependency group now includes `jupyter-collaboration`, `jupytext` and
+  `vl-convert-python`, notebooks are paired with `.py` files, `make notebooks`
+  launches JupyterLab with a generated token, and `AGENTS.md` documents the
+  setup and notebook reproducibility practices ([#297]).
+
+### Changed
+
+- Update all locked dependencies and the Ruff pre-commit hook to their latest
+  releases ([#298]).
+
+### Fixed
+
+- Include the Jupytext configuration in the source distribution so
+  `make manifest-check` passes ([#298]).
+
+### Removed
+
+### Security
+
 ## [2.1.1] - 2026-08-25
 
 ### Added
@@ -59,7 +83,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Security
 
-[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.1.1...HEAD
+[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/palewire/python-open-source-template/compare/2.1.2...2.2.0
 [2.1.1]: https://github.com/palewire/python-open-source-template/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/palewire/python-open-source-template/compare/2.0.0...2.1.0
 [#261]: https://github.com/palewire/python-open-source-template/pull/261
@@ -76,3 +101,5 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 [#272]: https://github.com/palewire/python-open-source-template/pull/272
 [#273]: https://github.com/palewire/python-open-source-template/pull/273
 [#278]: https://github.com/palewire/python-open-source-template/pull/278
+[#297]: https://github.com/palewire/python-open-source-template/pull/297
+[#298]: https://github.com/palewire/python-open-source-template/pull/298
