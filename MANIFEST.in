@@ -17,7 +17,7 @@ include SECURITY.md
 include TEMPLATE_SETUP.md
 include uv.lock
 include zizmor.yml
-recursive-include _notebooks *.toml
+recursive-include notebooks *.toml
 recursive-include .devcontainer *
 recursive-include .github *
 recursive-include docs *.md *.py Makefile

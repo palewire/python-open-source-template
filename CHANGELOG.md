@@ -10,6 +10,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Rename the `_notebooks/` folder to `notebooks/`, the more common convention
+  ([#300]).
+
 ### Fixed
 
 ### Removed
@@ -103,3 +106,4 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 [#278]: https://github.com/palewire/python-open-source-template/pull/278
 [#297]: https://github.com/palewire/python-open-source-template/pull/297
 [#298]: https://github.com/palewire/python-open-source-template/pull/298
+[#300]: https://github.com/palewire/python-open-source-template/pull/300
