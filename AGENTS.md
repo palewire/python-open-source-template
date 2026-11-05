@@ -134,3 +134,36 @@ human approval.
 - Copy `.env.example` to `.env` or use `make bootstrap` in a linked worktree.
   Do not commit generated build output, virtual environments, `.env` files,
   `.env.worktree`, or credentials.
+
+## Working on Notebooks with an Assistant
+
+Notebooks live in `_notebooks/`. An assistant can read, edit, and run cells in
+an open JupyterLab notebook while the person watches the changes appear in
+their browser tab. This relies on `jupyter-collaboration`, which is in the
+`notebooks` dependency group. Each notebook is paired with a `.py` twin by
+Jupytext (see `_notebooks/jupytext.toml`) so reviewers get a readable diff.
+
+Set this up once per person. The token is a secret: never commit it, and never
+launch JupyterLab with an empty token.
+
+```sh
+make notebooks   # prints a generated JUPYTER_TOKEN and launches JupyterLab
+claude mcp add jupyter -e JUPYTER_URL=http://localhost:8888 \
+  -e JUPYTER_TOKEN="<token printed above>" -- uvx jupyter-mcp-server@latest
+```
+
+Working rules:
+
+- Open the notebook in a JupyterLab tab before the assistant edits it.
+- Edit a notebook only through the Jupyter tools. Never write to the `.ipynb`
+  file directly: an open notebook is a live document, and a direct write can
+  silently overwrite unsaved edits.
+- Read or review code in the `.py` twin. After editing a twin, run
+  `uv run --group notebooks jupytext --sync <notebook>.ipynb`.
+- Saving in JupyterLab (Ctrl+S) writes the file and the twin to disk and makes
+  the change visible to git.
+- Restarting JupyterLab ends the running session and loses variables. Run the
+  cells again from the top.
+- Altair charts render only in JupyterLab; GitHub's preview shows a text
+  placeholder. Also save a PNG of any chart that matters. Saving PNGs needs
+  `vl-convert-python` 1.9.0 or newer.

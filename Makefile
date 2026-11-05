@@ -8,7 +8,7 @@ COVERAGE_FAIL_UNDER ?= 80
 TEST_ARGS ?=
 RUN = $(if $(UV_PYTHON),UV_PYTHON=$(UV_PYTHON)) $(UV) run
 
-.PHONY: all help bootstrap install install-all install-dev install-test install-test-extras install-docs check verify diff-check lint format-check format fix type-check dependency-check workflow-check manifest-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
+.PHONY: all help bootstrap install install-all install-dev install-test install-test-extras install-docs notebooks check verify diff-check lint format-check format fix type-check dependency-check workflow-check manifest-check test test-serial test-parallel coverage build package-check package-verify docs docs-check linkcheck build-docs serve-docs hooks clean
 
 help: ## Show available commands
 	@awk 'BEGIN {FS = ":.*## "}; /^[a-zA-Z0-9_-]+:.*## / {printf "%-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -32,6 +32,11 @@ install-test-extras: ## Install optional test utilities
 
 install-docs: ## Install dependencies for documentation
 	$(UV) sync --group docs --locked
+
+notebooks: ## Launch JupyterLab with a generated token for assistant collaboration
+	@token="$${JUPYTER_TOKEN:-$$(openssl rand -hex 24)}"; \
+	echo "JUPYTER_TOKEN=$$token"; \
+	JUPYTER_TOKEN="$$token" $(UV) run --group notebooks jupyter lab --port 8888 --IdentityProvider.token "$$token"
 
 all: verify ## Run the complete verification suite
 
