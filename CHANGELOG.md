@@ -10,14 +10,34 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- Rename the `_notebooks/` folder to `notebooks/`, the more common convention
-  ([#300]).
-
 ### Fixed
 
 ### Removed
 
 ### Security
+
+## [2.3.0] - 2026-11-16
+
+### Added
+
+- Check docstrings with Ruff's Google-style rules, require `Returns`, `Yields`
+  and `Raises` sections where the code needs them, and run docstring examples
+  as tests. `AGENTS.md` documents the convention ([#310]).
+
+### Changed
+
+- Rename the `_notebooks/` folder to `notebooks/`, the more common convention
+  ([#300]).
+- Update locked dependencies, including ty, Ruff, tornado and soupsieve, and
+  move the Ruff pre-commit hook to match the locked version ([#301], [#302],
+  [#306]).
+- Bump the uv pin in the documentation and deployment workflows and align the
+  CodeQL upload pins ([#307]).
+
+### Fixed
+
+- Rename five ty rules in `pyproject.toml` that newer ty versions renamed, so
+  `make check` no longer fails with warnings ([#306]).
 
 ## [2.2.0] - 2026-11-05
 
@@ -86,7 +106,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Security
 
-[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/palewire/python-open-source-template/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/palewire/python-open-source-template/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/palewire/python-open-source-template/compare/2.1.2...2.2.0
 [2.1.1]: https://github.com/palewire/python-open-source-template/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/palewire/python-open-source-template/compare/2.0.0...2.1.0
@@ -107,3 +128,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 [#297]: https://github.com/palewire/python-open-source-template/pull/297
 [#298]: https://github.com/palewire/python-open-source-template/pull/298
 [#300]: https://github.com/palewire/python-open-source-template/pull/300
+[#301]: https://github.com/palewire/python-open-source-template/pull/301
+[#302]: https://github.com/palewire/python-open-source-template/pull/302
+[#306]: https://github.com/palewire/python-open-source-template/pull/306
+[#307]: https://github.com/palewire/python-open-source-template/pull/307
+[#310]: https://github.com/palewire/python-open-source-template/pull/310
