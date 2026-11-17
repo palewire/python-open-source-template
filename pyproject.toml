@@ -94,8 +94,11 @@ notebooks = [
 
 [tool.ruff]
 target-version = "py311"
+# pydoclint (DOC) rules are still in preview, so opt in to them by name only.
+preview = true
 
 [tool.ruff.lint]
+explicit-preview-rules = true
 select = [
     "E",    # pycodestyle
     "F",    # pyflakes
@@ -127,6 +130,12 @@ select = [
     "FLY",  # flynt - f-string conversion
     "PERF", # perflint - performance improvements
     "RUF",  # ruff-specific rules
+    "D",    # pydocstyle - docstring style
+    "DOC201", # pydoclint - document return values
+    "DOC402", # pydoclint - document yielded values
+    "DOC403", # pydoclint - no Yields section without yield
+    "DOC501", # pydoclint - document raised exceptions
+    "DOC502", # pydoclint - no Raises section for exceptions not raised
 ]
 ignore = [
     "E501",    # Line length
@@ -140,8 +149,13 @@ ignore = [
     "RUF005",  # Allow for adding lists
 ]
 
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = [
+    "D",       # Docstrings
+    "DOC",     # Docstring sections
     "ANN",     # Annotations
     "S105",    # Possible hardcoded password
     "S108",    # Temp directory
@@ -153,11 +167,12 @@ docstring-code-format = true
 [tool.pytest.ini_options]
 addopts = [
     "--strict-config",
+    "--doctest-modules",
     "--strict-markers",
     "--durations=10",
     "--durations-min=1.0",
 ]
-testpaths = ["tests"]
+testpaths = ["tests", "scripts"]
 python_files = "test_*.py"
 timeout = 60
 xfail_strict = true
