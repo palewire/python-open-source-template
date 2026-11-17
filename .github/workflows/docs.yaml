@@ -30,7 +30,8 @@ jobs:
         name: Install uv
         uses: astral-sh/setup-uv@v10.3.3
         with:
-          version: "0.10.7"
+          # Exact uv version. Bump by hand; Dependabot does not track it.
+          version: "0.13.8"
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -71,7 +72,8 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@v10.3.3
         with:
-          version: "0.10.7"
+          # Exact uv version. Bump by hand; Dependabot does not track it.
+          version: "0.13.8"
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
