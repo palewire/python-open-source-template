@@ -129,6 +129,12 @@ human approval.
 
 - Keep production code, tests, package configuration, and documentation aligned.
 - Add tests for new library behavior under `tests/`.
+- Write Google-style docstrings for every function, including private ones.
+  Ruff checks the style and requires `Returns` and `Raises` sections when the
+  code returns or raises. Also list every argument under `Args` and add an
+  `Examples` section. Ruff cannot require `Examples`, but pytest runs them as
+  doctests, so write them to pass (mark ones that cannot run with
+  `# doctest: +SKIP`).
 - Use the configured Ruff and ty checks; do not introduce duplicate tooling
   without a project need.
 - Copy `.env.example` to `.env` or use `make bootstrap` in a linked worktree.
