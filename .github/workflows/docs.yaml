@@ -28,7 +28,7 @@ jobs:
 
       - id: install-uv
         name: Install uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           # Exact uv version. Bump by hand; Dependabot does not track it.
           version: "0.13.8"
@@ -70,7 +70,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v10.3.3
+        uses: astral-sh/setup-uv@v10.4.0
         with:
           # Exact uv version. Bump by hand; Dependabot does not track it.
           version: "0.13.8"
