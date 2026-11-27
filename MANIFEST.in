@@ -7,6 +7,7 @@ include .pre-commit-config.yaml
 include .python-version
 include AGENTS.md
 include CHANGELOG.md
+include context7.json
 include LICENSE
 include README.md
 include CODE_OF_CONDUCT.md

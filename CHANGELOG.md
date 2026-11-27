@@ -8,6 +8,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Add project-neutral Context7 configuration, opt-in index refresh automation,
+  and setup guidance for generated projects.
+
 ### Changed
 
 ### Fixed
